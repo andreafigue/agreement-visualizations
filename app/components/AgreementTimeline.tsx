@@ -26,8 +26,8 @@ type TimelineSeries = { id: string; name: string; color: string; points: Timelin
 type TimelineData = { series: TimelineSeries[]; windowDays: number; error?: string };
 
 const MODES: { key: Mode; label: string }[] = [
-  { key: "weekly", label: "Weekly" },
   { key: "cumulative", label: "Cumulative" },
+  { key: "weekly", label: "Weekly" },
 ];
 
 const OVERALL_SERIES_ID = "__overall__";
@@ -40,6 +40,12 @@ function fmt(n: number) {
 function meanAgreement(points: TimelinePoint[]) {
   const avg = d3.mean(points, (p) => p.value);
   return avg === undefined ? null : avg;
+}
+
+function codingCountForSeries(points: TimelinePoint[], mode: Mode) {
+  if (points.length === 0) return 0;
+  if (mode === "cumulative") return points[points.length - 1]?.n ?? 0;
+  return d3.sum(points, (point) => point.n);
 }
 
 function agreementLabel(value: number) {
@@ -320,7 +326,7 @@ function AgreementLineChart({
   ];
   const width = 1360;
   const height = 560;
-  const pad = { top: 28, right: 176, bottom: 58, left: 88 };
+  const pad = { top: 28, right: 132, bottom: 58, left: 96 };
   const chartW = width - pad.left - pad.right;
   const chartH = height - pad.top - pad.bottom;
 
@@ -392,7 +398,7 @@ function AgreementLineChart({
   };
 
   return (
-    <div style={{ height: `${height}px`, position: "relative" }}>
+    <div style={{ height: `${height}px`, position: "relative", width: "100%", maxWidth: 1480, margin: "0 auto" }}>
       <svg
         viewBox={`0 0 ${width} ${height}`}
         width="100%"
@@ -579,7 +585,7 @@ function AgreementLineChart({
 
 export default function AgreementTimeline({ initialRunData }: { initialRunData: RunData }) {
   const runData = initialRunData;
-  const [mode, setMode] = useState<Mode>("weekly");
+  const [mode, setMode] = useState<Mode>("cumulative");
   const [selectedMeasureIds, setSelectedMeasureIds] = useState<Set<string>>(new Set());
   const weeklyBinDays = 7;
   const [highlightedSeriesId, setHighlightedSeriesId] = useState<string | null>(null);
@@ -649,7 +655,17 @@ export default function AgreementTimeline({ initialRunData }: { initialRunData: 
     return null;
   }, [overallTimeline, selectedMeasureIds]);
 
-  const visibleSeries = useMemo(() => allSeries, [allSeries]);
+  const visibleSeries = useMemo(() => {
+    return [...allSeries].sort((a, b) => {
+      const aValue = mode === "cumulative"
+        ? (a.points.length > 0 ? a.points[a.points.length - 1].value : Number.NEGATIVE_INFINITY)
+        : (meanAgreement(a.points) ?? Number.NEGATIVE_INFINITY);
+      const bValue = mode === "cumulative"
+        ? (b.points.length > 0 ? b.points[b.points.length - 1].value : Number.NEGATIVE_INFINITY)
+        : (meanAgreement(b.points) ?? Number.NEGATIVE_INFINITY);
+      return bValue - aValue;
+    });
+  }, [allSeries, mode]);
   const overallKappa = runData.overall?.kappa ?? null;
   const completedBatchOverallKappa = useMemo(() => {
     const points = cumulativeOverallTimeline?.series?.[0]?.points ?? [];
@@ -658,6 +674,10 @@ export default function AgreementTimeline({ initialRunData }: { initialRunData: 
   const overallSummaryValue = useMemo(() => {
     return completedBatchOverallKappa ?? overallKappa;
   }, [completedBatchOverallKappa, overallKappa]);
+  const overallCodingCount = useMemo(() => {
+    const points = overallTimeline?.series?.[0]?.points ?? [];
+    return codingCountForSeries(points, mode);
+  }, [overallTimeline, mode]);
   const overallMeta = overallSummaryValue === null ? null : agreementLabel(overallSummaryValue);
   const error = derivedError;
   const hasMeasureSelection = selectedMeasureIds.size > 0;
@@ -673,7 +693,7 @@ export default function AgreementTimeline({ initialRunData }: { initialRunData: 
   return (
     <div style={{ minHeight: "100vh", background: "#f8fafc", fontFamily: "system-ui, sans-serif" }}>
       <div style={{ height: "100vh", padding: "1.75rem 2rem 1.75rem", boxSizing: "border-box", overflow: "hidden" }}>
-        <div style={{ height: "100%", minHeight: 0, display: "grid", gridTemplateColumns: "minmax(0, 1fr) 340px", gap: "1.5rem", alignItems: "stretch" }}>
+        <div style={{ height: "100%", minHeight: 0, maxWidth: 1720, margin: "0 auto", display: "grid", gridTemplateColumns: "minmax(0, 1fr) 320px", gap: "1.5rem", alignItems: "stretch" }}>
           <section style={{ minHeight: 0, background: "white", border: "1px solid #e5e7eb", borderRadius: 18, boxShadow: "0 10px 30px rgba(15,23,42,0.05)", display: "flex", flexDirection: "column", overflow: "hidden" }}>
             <div style={{ padding: "1.35rem 1.5rem 0.9rem", borderBottom: "1px solid #eef2f7" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", flexWrap: "wrap" }}>
@@ -713,9 +733,9 @@ export default function AgreementTimeline({ initialRunData }: { initialRunData: 
               </div>
             </div>
 
-            <div style={{ flex: 1, minHeight: 0, padding: "1rem 1.2rem 1.25rem 1.15rem", display: "flex", flexDirection: "column" }}>
+            <div style={{ flex: 1, minHeight: 0, padding: "1rem 1.5rem 1.25rem", display: "flex", flexDirection: "column" }}>
               {error && <div style={{ padding: "0.2rem 0.2rem 1rem", color: "#dc2626", fontSize: "0.92rem" }}>{error}</div>}
-              <div style={{ flex: 1, minHeight: 0 }}>
+              <div style={{ flex: 1, minHeight: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
                 {timeline && !error && (
                   <AgreementLineChart
                     data={timeline}
@@ -728,7 +748,6 @@ export default function AgreementTimeline({ initialRunData }: { initialRunData: 
               </div>
             </div>
             <div
-              className="p-4 mt-4 text-right"
               style={{
                 borderTop: "1px solid #eef2f7",
                 fontSize: "0.9rem",
@@ -737,11 +756,14 @@ export default function AgreementTimeline({ initialRunData }: { initialRunData: 
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "flex-end",
-                gap: "0.45rem",
+                gap: "0.55rem",
+                flexWrap: "wrap",
+                padding: "0.9rem 1.2rem 1rem",
+                lineHeight: 1.5,
               }}
             >
-                <span>Agreement calculated using Generalized Cohen&apos;s Kappa</span>
-                <SourceInfoButton href={GCK_PAPER_URL} />
+              <span style={{ textAlign: "right" }}>Agreement calculated using Generalized Cohen&apos;s Kappa</span>
+              <SourceInfoButton href={GCK_PAPER_URL} />
             </div>
 
             
@@ -789,9 +811,14 @@ export default function AgreementTimeline({ initialRunData }: { initialRunData: 
                   opacity: highlightedSeriesId === null || highlightedSeriesId === OVERALL_SERIES_ID || selectedMeasureIds.has(OVERALL_SERIES_ID) ? 1 : hasMeasureSelection ? 0.52 : 0.5,
                 }}
               >
-                <div style={{ display: "flex", alignItems: "center", gap: "0.45rem", fontSize: "0.78rem", color: "#475569", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em" }}>
-                  <span style={{ width: 18, height: 0, borderTop: "2px dashed #475569", flexShrink: 0 }} />
-                  Overall Kappa
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.45rem", minWidth: 0, fontSize: "0.78rem", color: "#475569", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                    <span style={{ width: 18, height: 0, borderTop: "2px dashed #475569", flexShrink: 0 }} />
+                    <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>Overall Kappa</span>
+                  </div>
+                  <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#64748b", whiteSpace: "nowrap", paddingLeft: "0.25rem", flexShrink: 0 }}>
+                    {fmt(overallCodingCount)} texts
+                  </span>
                 </div>
                 <div style={{ fontSize: "0.88rem", marginTop: 6 }}>
                   <span style={{ color: overallMeta.color, fontWeight: 800 }}>
@@ -808,6 +835,7 @@ export default function AgreementTimeline({ initialRunData }: { initialRunData: 
                 const summaryValue = mode === "cumulative"
                   ? (series.points.length > 0 ? series.points[series.points.length - 1].value : null)
                   : meanAgreement(series.points);
+                const codingCount = codingCountForSeries(series.points, mode);
                 const meta = summaryValue === null ? null : agreementLabel(summaryValue);
                 const isSelected = selectedMeasureIds.has(String(series.id));
                 const isHighlighted = highlightedSeriesId === series.id;
@@ -820,7 +848,7 @@ export default function AgreementTimeline({ initialRunData }: { initialRunData: 
                     style={{
                       border: isSelected ? `1px solid ${series.color}` : isHighlighted ? `1px solid ${series.color}` : "1px solid #f1f5f9",
                       borderRadius: 8,
-                      padding: "0.50rem 0.8rem",
+                      padding: "0.7rem 0.95rem",
                       background: isSelected ? "#f8fafc" : isHighlighted ? "#fbfdff" : "white",
                       cursor: "pointer",
                       transition: "border-color 0.12s, background 0.12s, opacity 0.12s",
@@ -828,18 +856,23 @@ export default function AgreementTimeline({ initialRunData }: { initialRunData: 
                       boxShadow: isSelected ? `inset 0 0 0 1px ${series.color}22` : "none",
                     }}
                   >
-                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.75rem" }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: "0.45rem", minWidth: 0, fontSize: "0.84rem", fontWeight: 700, color: "#334155" }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.55rem", minWidth: 0, fontSize: "0.84rem", fontWeight: 700, color: "#334155" }}>
                         <span style={{ width: 10, height: 10, borderRadius: 999, background: series.color, flexShrink: 0 }} />
                         <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{series.name}</span>
                       </div>
-                      {isSelected && (
-                        <span style={{ fontSize: "0.68rem", fontWeight: 800, color: series.color, textTransform: "uppercase", letterSpacing: "0.04em", flexShrink: 0 }}>
-                          Selected
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", flexShrink: 0 }}>
+                        <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#64748b", whiteSpace: "nowrap", paddingLeft: "0.25rem" }}>
+                          {fmt(codingCount)} texts
                         </span>
-                      )}
+                        {isSelected && (
+                          <span style={{ fontSize: "0.68rem", fontWeight: 800, color: series.color, textTransform: "uppercase", letterSpacing: "0.04em", flexShrink: 0 }}>
+                            Selected
+                          </span>
+                        )}
+                      </div>
                     </div>
-                    <div style={{ fontSize: "0.76rem", marginTop: 2 }}>
+                    <div style={{ fontSize: "0.76rem", marginTop: 6, lineHeight: 1.45 }}>
                       <span style={{ color: meta?.color ?? "#64748b", fontWeight: 700 }}>
                         {mode === "cumulative" ? "k=" : "avg k="}{summaryValue === null ? "n/a" : summaryValue.toFixed(3)}
                       </span>

@@ -45,6 +45,7 @@ const kappaScale = d3.scaleLinear<string>()
   .domain([0, 0.2, 0.4, 0.6, 0.8, 1.0])
   .range(["#ef4444","#f97316","#f59e0b","#84cc16","#10b981","#047857"])
   .clamp(true);
+const GCK_PAPER_URL = "https://journals.sagepub.com/doi/10.1177/0013164488484007";
 const NONE_FILTER_ID = -1;
 const NONE_CODE_ID = "__none__";
 const displayDateFormatter = new Intl.DateTimeFormat("en-US", {
@@ -111,6 +112,103 @@ function weightedCodeKappa(pairs: PairwiseResult[], codes: CodeMeta[]) {
 
     };
   }).sort((a, b) => b.kappa - a.kappa);
+}
+
+function SourceInfoButton({ href }: { href: string }) {
+  const [hovered, setHovered] = useState(false);
+  const [tooltipPos, setTooltipPos] = useState<{ top: number; left: number } | null>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+
+  const showTooltip = () => {
+    const rect = buttonRef.current?.getBoundingClientRect();
+    if (rect) {
+      const tooltipWidth = 240;
+      const viewportPadding = 12;
+      setTooltipPos({
+        top: rect.top - 12,
+        left: Math.min(
+          Math.max(rect.right - tooltipWidth, viewportPadding),
+          window.innerWidth - tooltipWidth - viewportPadding,
+        ),
+      });
+    }
+    setHovered(true);
+  };
+
+  const hideTooltip = () => {
+    setHovered(false);
+  };
+
+  return (
+    <div
+      style={{ position: "relative", display: "inline-flex", alignItems: "center" }}
+      onMouseEnter={showTooltip}
+      onMouseLeave={hideTooltip}
+    >
+      <button
+        ref={buttonRef}
+        aria-label="Paper source information"
+        style={{
+          width: 22,
+          height: 22,
+          borderRadius: "50%",
+          border: "1px solid #dbe2ea",
+          background: hovered ? "#eef2ff" : "white",
+          color: hovered ? "#4f46e5" : "#94a3b8",
+          fontSize: "0.78rem",
+          fontWeight: 700,
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontFamily: "inherit",
+          transition: "all 0.15s ease",
+          flexShrink: 0,
+        }}
+      >
+        i
+      </button>
+
+      {hovered && (
+        <div
+          style={{
+            position: "fixed",
+            top: tooltipPos ? tooltipPos.top : 0,
+            left: tooltipPos ? tooltipPos.left : 0,
+            transform: "translateY(-100%)",
+            zIndex: 1200,
+            width: 240,
+            padding: "0.8rem 0.9rem",
+            borderRadius: 12,
+            background: "#0f172a",
+            color: "#e2e8f0",
+            boxShadow: "0 18px 50px rgba(15, 23, 42, 0.28)",
+            fontSize: "0.74rem",
+            lineHeight: 1.5,
+          }}
+        >
+          <div style={{ fontWeight: 800, color: "white", marginBottom: 6 }}>Source</div>
+          <div>
+            Figueroa, A., Ghosh, S., & Aragon, C. (2023, July). Generalized Cohen&apos;s kappa: a novel inter-rater reliability metric for non-mutually exclusive categories. In International Conference on Human-Computer Interaction (pp. 19-34). Cham: Springer Nature Switzerland.
+          </div>
+          <a
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              display: "inline-flex",
+              marginTop: 8,
+              color: "#93c5fd",
+              textDecoration: "none",
+              fontWeight: 700,
+            }}
+          >
+            Open paper
+          </a>
+        </div>
+      )}
+    </div>
+  );
 }
 
 // ── Range slider (two handles) ────────────────────────────────────────────────
@@ -1237,6 +1335,23 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
           )}
               </div>
             </div>
+            <div
+              style={{
+                borderTop: "1px solid #eef2f7",
+                fontSize: "0.9rem",
+                color: "#64748b",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-end",
+                gap: "0.55rem",
+                flexWrap: "wrap",
+                padding: "0.9rem 1.2rem 1rem",
+                lineHeight: 1.5,
+              }}
+            >
+              <span style={{ textAlign: "right" }}>Agreement calculated using Generalized Cohen&apos;s Kappa</span>
+              <SourceInfoButton href={GCK_PAPER_URL} />
+            </div>
           </section>
 
           <aside style={{ background: "white", border: "1px solid #e5e7eb", borderRadius: 18, padding: "1.25rem", minHeight: 0, overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "0 10px 30px rgba(15,23,42,0.05)" }}>
@@ -1279,7 +1394,6 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
           </aside>
         </div>
       </div>
-
 
       {/* Tooltip */}
       {tooltip && (
