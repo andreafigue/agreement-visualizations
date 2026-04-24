@@ -43,7 +43,7 @@ type ExtSVG = SVGSVGElement & {
 
 const kappaScale = d3.scaleLinear<string>()
   .domain([0, 0.2, 0.4, 0.6, 0.8, 1.0])
-  .range(["#ef4444","#f97316","#f59e0b","#84cc16","#10b981","#047857"])
+  .range(["#ef4444", "#f97316", "#facc15", "#65a30d", "#10b981", "#047857"])
   .clamp(true);
 const GCK_PAPER_URL = "https://journals.sagepub.com/doi/10.1177/0013164488484007";
 const NONE_FILTER_ID = -1;
@@ -249,8 +249,8 @@ function RangeSlider({ min, max, low, high, step = 0.05, onChange }: {
   };
 
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flex: 1, minWidth: 220 }}>
-      <span style={{ fontSize: "0.7rem", fontWeight: 600, color: "#6b7280", textTransform: "uppercase", letterSpacing: "0.05em", whiteSpace: "nowrap" }}>κ range</span>
+    <div style={{ display: "flex", alignItems: "center", gap: "0.55rem", width: 290, maxWidth: "100%", paddingInline: "0.35rem" }}>
+      <span style={{ fontSize: "0.76rem", fontWeight: 700, color: "#475569", textTransform: "uppercase", letterSpacing: "0.05em", whiteSpace: "nowrap" }}>Kappa range</span>
 
       <div ref={trackRef} style={{ flex: 1, height: 4, background: "#e5e7eb", borderRadius: 2, position: "relative", cursor: "pointer" }}>
         {/* Filled range */}
@@ -287,8 +287,8 @@ function RangeSlider({ min, max, low, high, step = 0.05, onChange }: {
         />
       </div>
 
-      <span style={{ fontSize: "0.78rem", fontWeight: 700, color: kappaScale(low), minWidth: 30 }}>{low.toFixed(2)}</span>
-      <span style={{ fontSize: "0.7rem", color: "#9ca3af" }}>–</span>
+      <span style={{ fontSize: "0.78rem", fontWeight: 700, color: kappaScale(Math.max(0, low)), minWidth: 36 }}>{low.toFixed(2)}</span>
+      <span style={{ fontSize: "0.76rem", color: "#64748b" }}>–</span>
       <span style={{ fontSize: "0.78rem", fontWeight: 700, color: kappaScale(high), minWidth: 30 }}>{high.toFixed(2)}</span>
     </div>
   );
@@ -296,11 +296,34 @@ function RangeSlider({ min, max, low, high, step = 0.05, onChange }: {
 
 // ── D3 Bar chart ──────────────────────────────────────────────────────────────
 
-type BarDatum = { codeId: string; codeName: string; color: string; kappa: number; userTexts?: number; c1n?: number; c2n?: number; c1Name?: string; c2Name?: string };
+type AgreementBucket = { label: string; count: number; color: string };
+type BarDatum = { codeId: string; codeName: string; color: string; kappa: number; userTexts?: number; c1n?: number; c2n?: number; c1Name?: string; c2Name?: string; agreementBuckets?: AgreementBucket[] };
 
-function KappaBarChart({ bars, title, subtitle, selectedCodes: activeCodes, onCodeClick, referenceKappa }: {
+function bucketAgreement(kappa: number) {
+  if (kappa < 0) return { label: "Poor", color: "#991b1b" };
+  if (kappa < 0.20) return { label: "Slight", color: "#9a3412" };
+  if (kappa < 0.40) return { label: "Fair", color: "#b45309" };
+  if (kappa < 0.60) return { label: "Moderate", color: "#1d4ed8" };
+  if (kappa < 0.80) return { label: "Substantial", color: "#0f766e" };
+  return { label: "Almost perfect", color: "#047857" };
+}
+
+function agreementDistribution(values: number[]) {
+  const buckets = new Map<string, AgreementBucket>();
+  for (const value of values) {
+    const meta = bucketAgreement(value);
+    const current = buckets.get(meta.label);
+    if (current) current.count += 1;
+    else buckets.set(meta.label, { label: meta.label, count: 1, color: meta.color });
+  }
+  return Array.from(buckets.values()).sort((a, b) => b.count - a.count);
+}
+
+function KappaBarChart({ bars, title, subtitle, selectedCodes: activeCodes, onCodeClick, onCodeHover, onCodeLeave, referenceKappa }: {
   bars: BarDatum[]; title: string; subtitle: string; selectedCodes?: Set<string>;
   onCodeClick?: (codeId: string) => void;
+  onCodeHover?: (codeId: string) => void;
+  onCodeLeave?: () => void;
   referenceKappa?: number;
 }) {
   const svgRef      = useRef<SVGSVGElement>(null);
@@ -351,18 +374,6 @@ function KappaBarChart({ bars, title, subtitle, selectedCodes: activeCodes, onCo
       .attr("width", cW).attr("height", y.bandwidth())
       .attr("fill", "#f8fafc").attr("rx", 3);
 
-    // Tooltip div — fixed positioned so it never clips
-    let tipDiv = d3.select<HTMLDivElement, unknown>("div.bar-chart-tip");
-    if (tipDiv.empty()) {
-      tipDiv = d3.select("body").append("div").attr("class", "bar-chart-tip")
-        .style("position", "fixed").style("pointer-events", "none")
-        .style("background", "#1f2937").style("color", "white")
-        .style("border-radius", "6px").style("padding", "0.4rem 0.6rem")
-        .style("font-size", "0.72rem").style("font-family", "system-ui, sans-serif")
-        .style("box-shadow", "0 4px 12px rgba(0,0,0,0.25)")
-        .style("display", "none").style("z-index", "9999");
-    }
-
     // Hover track rects (transparent, full row)
     g.selectAll<SVGRectElement, BarDatum>("rect.hover-track")
       .data(bars).join("rect").attr("class", "hover-track")
@@ -371,36 +382,8 @@ function KappaBarChart({ bars, title, subtitle, selectedCodes: activeCodes, onCo
       .attr("fill", "transparent")
       .style("cursor", "pointer")
       .on("click", (_, d) => { if (onCodeClick) onCodeClick(d.codeId); })
-      .on("mouseenter", (event, d) => {
-        tipDiv
-          .style("display", "block")
-          .style("left", `${event.clientX + 14}px`)
-          .style("top",  `${event.clientY - 14}px`)
-          .html(`<div style="font-weight:700;margin-bottom:3px;color:#e2e8f0">${d.codeName}</div>
-                 <div style="display:flex;justify-content:space-between;gap:12px">
-                   <span style="color:#94a3b8">κ</span>
-                   <span style="font-weight:600;color:${kappaScale(Math.max(0,d.kappa))}">${d.kappa.toFixed(3)} · ${kappaLabel(d.kappa)}</span>
-                 </div>
-                 ${d.userTexts !== undefined ? `<div style="display:flex;justify-content:space-between;gap:12px;margin-top:2px">
-                   <span style="color:#94a3b8">Texts with this code</span>
-                   <span style="font-weight:600">${d.userTexts.toLocaleString()}</span>
-                 </div>` : ''}
-                 ${d.c1Name && d.c1n !== undefined ? `<div style="margin-top:5px;padding-top:5px;border-top:1px solid #374151">
-                   <div style="display:flex;justify-content:space-between;gap:12px;margin-bottom:2px">
-                     <span style="color:#94a3b8">${d.c1Name.split(' ')[0]}</span>
-                     <span style="font-weight:600">${d.c1n.toLocaleString()}</span>
-                   </div>
-                   ${d.c2Name && d.c2n !== undefined ? `<div style="display:flex;justify-content:space-between;gap:12px">
-                     <span style="color:#94a3b8">${d.c2Name.split(' ')[0]}</span>
-                     <span style="font-weight:600">${d.c2n.toLocaleString()}</span>
-                   </div>` : ''}
-                 </div>` : ''}`);
-      })
-      .on("mousemove", (event) => {
-        tipDiv.style("left", `${event.clientX + 14}px`)
-              .style("top",  `${event.clientY - 14}px`);
-      })
-      .on("mouseleave", () => tipDiv.style("display", "none"));
+      .on("mouseenter", (_, d) => { if (onCodeHover) onCodeHover(d.codeId); })
+      .on("mouseleave", () => { if (onCodeLeave) onCodeLeave(); });
 
     // Bars
     g.selectAll<SVGRectElement, BarDatum>("rect.bar")
@@ -467,17 +450,17 @@ function KappaBarChart({ bars, title, subtitle, selectedCodes: activeCodes, onCo
       .call(ax => ax.select(".domain").remove())
       .call(ax => ax.selectAll("line").attr("stroke", "#e2e8f0"))
       .call(ax => ax.selectAll("text")
-        .attr("font-size", 10).attr("fill", "#9ca3af")
+        .attr("font-size", 11).attr("fill", "#64748b")
         .attr("font-family", "system-ui, sans-serif"));
 
-  }, [bars, referenceKappa, activeCodes, onCodeClick]);
+  }, [bars, referenceKappa, activeCodes, onCodeClick, onCodeHover, onCodeLeave]);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100%", overflow: "hidden" }}>
       {/* Header */}
       <div style={{ flexShrink: 0, padding: "1rem 1.25rem 0.75rem", borderBottom: "1px solid #f1f5f9" }}>
         <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "#111827", lineHeight: 1.3 }}>{title}</div>
-        <div style={{ fontSize: "0.7rem", color: "#9ca3af", marginTop: 3 }}>{subtitle}</div>
+        <div style={{ fontSize: "0.78rem", color: "#64748b", marginTop: 4 }}>{subtitle}</div>
       </div>
 
       {/* Chart */}
@@ -496,15 +479,16 @@ function InfoButton() {
   const [hovered, setHovered] = useState(false);
   return (
     <div
-      style={{ position: "relative" }}
+      style={{ position: "relative", display: "flex", alignItems: "center", gap: "0.45rem" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
+      <span style={{ fontSize: "0.8rem", fontWeight: 700, color: "#475569", whiteSpace: "nowrap" }}>How to use</span>
       <button style={{
         width: 28, height: 28, borderRadius: "50%",
         border: "1px solid #e5e7eb", background: hovered ? "#f5f3ff" : "white",
-        color: hovered ? "#4f46e5" : "#9ca3af",
-        fontSize: "0.8rem", fontWeight: 700, cursor: "pointer",
+        color: hovered ? "#4f46e5" : "#64748b",
+        fontSize: "0.84rem", fontWeight: 700, cursor: "pointer",
         display: "flex", alignItems: "center", justifyContent: "center",
         fontFamily: "system-ui, sans-serif", transition: "all 0.15s",
         flexShrink: 0,
@@ -526,26 +510,15 @@ function InfoButton() {
             ["Drag node", "Reposition a coder"],
             ["Click node", "Pin coder code breakdown"],
             ["Click edge", "Pin pair code breakdown"],
-            ["K range", "Filter visible connections"],
+            ["Kappa range", "Filter visible connections"],
           ].map(([key, desc]) => (
             <div key={key} style={{ display: "flex", gap: "0.5rem", marginBottom: 4 }}>
-              <span style={{ color: "#94a3b8", minWidth: 74, flexShrink: 0 }}>{key}</span>
-              <span style={{ color: "#d1d5db" }}>{desc}</span>
+              <span style={{ color: "#cbd5e1", minWidth: 78, flexShrink: 0, fontSize: "0.78rem" }}>{key}</span>
+              <span style={{ color: "#e5e7eb", fontSize: "0.78rem" }}>{desc}</span>
             </div>
           ))}
         </div>
       )}
-    </div>
-  );
-}
-
-// ── StatPill ──────────────────────────────────────────────────────────────────
-
-function StatPill({ label, value, color }: { label: string; value: string; color?: string }) {
-  return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "0.4rem 0.875rem", background: "white", border: "1px solid #e5e7eb", borderRadius: 8 }}>
-      <span style={{ fontSize: "0.62rem", color: "#9ca3af", textTransform: "uppercase", letterSpacing: "0.06em" }}>{label}</span>
-      <span style={{ fontSize: "0.95rem", fontWeight: 700, color: color ?? "#111827", marginTop: 1 }}>{value}</span>
     </div>
   );
 }
@@ -605,10 +578,10 @@ function GenericFilterDropdown({ label, items, selected, onChange }: {
         border: `1px solid ${isActive ? "#6366f1" : "#e2e8f0"}`,
         background: isActive ? "#eef2ff" : "white",
         color: isActive ? "#4f46e5" : "#6b7280",
-        fontSize: "0.75rem", cursor: "pointer", fontFamily: "inherit",
+        fontSize: "0.8rem", cursor: "pointer", fontFamily: "inherit",
         fontWeight: isActive ? 600 : 400,
       }}>
-        {displayLabel} <span style={{ fontSize: "0.6rem", color: "#9ca3af" }}>{open ? "▲" : "▼"}</span>
+        {displayLabel} <span style={{ fontSize: "0.68rem", color: "#64748b" }}>{open ? "▲" : "▼"}</span>
       </button>
       {open && (
         <div style={{
@@ -617,7 +590,7 @@ function GenericFilterDropdown({ label, items, selected, onChange }: {
           boxShadow: "0 8px 24px rgba(0,0,0,0.12)", minWidth: 200, maxHeight: 260, overflowY: "auto",
         }}>
           <div onClick={() => { onChange(new Set()); }} style={{
-            padding: "0.4rem 0.75rem", fontSize: "0.78rem", cursor: "pointer",
+            padding: "0.4rem 0.75rem", fontSize: "0.82rem", cursor: "pointer",
             borderBottom: "1px solid #f1f5f9", fontWeight: 500,
             background: allMode ? "#f5f3ff" : "white", color: "#374151",
             display: "flex", alignItems: "center", gap: "0.4rem",
@@ -626,7 +599,7 @@ function GenericFilterDropdown({ label, items, selected, onChange }: {
             All {label} (default)
           </div>
           <div onClick={() => { onChange(new Set([NONE_FILTER_ID])); }} style={{
-            padding: "0.4rem 0.75rem", fontSize: "0.78rem", cursor: "pointer",
+            padding: "0.4rem 0.75rem", fontSize: "0.82rem", cursor: "pointer",
             borderBottom: "1px solid #f1f5f9", fontWeight: 500,
             background: effectiveNoneMode ? "#f5f3ff" : "white", color: "#374151",
             display: "flex", alignItems: "center", gap: "0.4rem",
@@ -636,7 +609,7 @@ function GenericFilterDropdown({ label, items, selected, onChange }: {
           </div>
           {items.map(item => (
             <div key={item.id} onClick={() => toggle(item.id)} style={{
-              padding: "0.35rem 0.75rem", fontSize: "0.78rem", cursor: "pointer",
+              padding: "0.35rem 0.75rem", fontSize: "0.82rem", cursor: "pointer",
               display: "flex", alignItems: "center", gap: "0.4rem",
               background: isChecked(item.id) ? "#f5f3ff" : "white", color: "#374151",
             }}>
@@ -705,11 +678,11 @@ function CodeFilterDropdown({ codes, selected, onChange }: {
         border: `1px solid ${isActive ? "#6366f1" : "#e2e8f0"}`,
         background: isActive ? "#eef2ff" : "white",
         color: isActive ? "#4f46e5" : "#6b7280",
-        fontSize: "0.75rem", cursor: "pointer", fontFamily: "inherit",
+        fontSize: "0.8rem", cursor: "pointer", fontFamily: "inherit",
         fontWeight: isActive ? 600 : 400,
       }}>
         {displayLabel}
-        <span style={{ fontSize: "0.6rem", color: "#9ca3af" }}>{open ? "▲" : "▼"}</span>
+        <span style={{ fontSize: "0.68rem", color: "#64748b" }}>{open ? "▲" : "▼"}</span>
       </button>
       {open && (
         <div style={{
@@ -718,7 +691,7 @@ function CodeFilterDropdown({ codes, selected, onChange }: {
           boxShadow: "0 8px 24px rgba(0,0,0,0.12)", minWidth: 200, maxHeight: 260, overflowY: "auto",
         }}>
           <div onClick={() => { onChange(new Set()); }} style={{
-            padding: "0.4rem 0.75rem", fontSize: "0.78rem", cursor: "pointer",
+            padding: "0.4rem 0.75rem", fontSize: "0.82rem", cursor: "pointer",
             borderBottom: "1px solid #f1f5f9", fontWeight: 500,
             background: allMode ? "#f5f3ff" : "white", color: "#374151",
             display: "flex", alignItems: "center", gap: "0.4rem",
@@ -727,7 +700,7 @@ function CodeFilterDropdown({ codes, selected, onChange }: {
             All codes (default)
           </div>
           <div onClick={() => { onChange(new Set([NONE_CODE_ID])); }} style={{
-            padding: "0.4rem 0.75rem", fontSize: "0.78rem", cursor: "pointer",
+            padding: "0.4rem 0.75rem", fontSize: "0.82rem", cursor: "pointer",
             borderBottom: "1px solid #f1f5f9", fontWeight: 500,
             background: effectiveNoneMode ? "#f5f3ff" : "white", color: "#374151",
             display: "flex", alignItems: "center", gap: "0.4rem",
@@ -740,7 +713,7 @@ function CodeFilterDropdown({ codes, selected, onChange }: {
             const color = resolveCodeColor(code, idx);
             return (
               <div key={id} onClick={() => toggle(id)} style={{
-                padding: "0.35rem 0.75rem", fontSize: "0.78rem", cursor: "pointer",
+                padding: "0.35rem 0.75rem", fontSize: "0.82rem", cursor: "pointer",
                 display: "flex", alignItems: "center", gap: "0.5rem",
                 background: isChecked(id) ? "#f5f3ff" : "white", color: "#374151",
               }}>
@@ -765,6 +738,7 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
   const [selectedEdge, setSelectedEdge] = useState<Edge | null>(null);
   const [selectedNode, setSelectedNode] = useState<Node | null>(null);
   const [selectedCodes, setSelectedCodes] = useState<Set<string>>(new Set());
+  const [hoveredCodeId, setHoveredCodeId] = useState<string | null>(null);
   const [filteredCoderIds, setFilteredCoderIds] = useState<Set<number>>(new Set());
   const [tooltip,      setTooltip]      = useState<TooltipState>(null);
   const [hoveredNodeId, setHoveredNodeId] = useState<number | null>(null);
@@ -784,7 +758,7 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
   const nodes = useMemo((): Node[] => {
     if (!runData) return [];
     const [mn, mx] = d3.extent(runData.coders, c => c.total) as [number, number];
-    const r = d3.scaleSqrt().domain([mn ?? 0, mx ?? 1]).range([10, 30]).clamp(true);
+    const r = d3.scaleSqrt().domain([mn ?? 0, mx ?? 1]).range([18, 40]).clamp(true);
     const active = new Set(runData.pairwise.flatMap(p => [p.coder1, p.coder2]));
     return runData.coders.filter(c => active.has(c.id))
       .map(c => ({ id: c.id, name: c.name, total: c.total, r: r(c.total) }));
@@ -799,6 +773,24 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
     const mid = totals[Math.floor(totals.length / 2)];
     return [mn, mid, mx];
   }, [nodes]);
+
+  const nodeLegendItems = useMemo(() => {
+    if (!nodes.length) {
+      return [
+        { radius: 18, count: 500 },
+        { radius: 29, count: 2000 },
+        { radius: 40, count: 5000 },
+      ];
+    }
+    const [mn, mx] = d3.extent(nodes, (node) => node.total) as [number, number];
+    const r = d3.scaleSqrt().domain([mn ?? 0, mx ?? 1]).range([18, 40]).clamp(true);
+    return nodeSizeLegend.map((count) => ({
+      radius: Math.round(r(count)),
+      count,
+    }));
+  }, [nodes, nodeSizeLegend]);
+
+  const previewCodes = useMemo(() => hoveredCodeId ? new Set<string>([hoveredCodeId]) : selectedCodes, [hoveredCodeId, selectedCodes]);
 
   const allEdges = useMemo((): Edge[] => {
     if (!runData || !nodes.length) return [];
@@ -817,19 +809,38 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
   // effectiveKappa — derived from allEdges + selectedCodes + filteredCoderIds in render
   }, [runData, nodes]);
 
+  const edgeThicknessLegend = useMemo(() => {
+    if (!allEdges.length) {
+      return [
+        { width: 2.5, count: 10 },
+        { width: 5.75, count: 100 },
+        { width: 9, count: 500 },
+      ];
+    }
+    const counts = allEdges.map((edge) => edge.n).sort((a, b) => a - b);
+    const mn = counts[0];
+    const mx = counts[counts.length - 1];
+    const mid = counts[Math.floor(counts.length / 2)];
+    const ew = d3.scaleSqrt().domain([mn ?? 0, mx ?? 1]).range([2.5, 9]).clamp(true);
+    return [mn, mid, mx].map((count) => ({
+      width: Number(ew(count).toFixed(2)),
+      count,
+    }));
+  }, [allEdges]);
+
   // Effective kappa per edge — perCodeKappa if code selected, else overall
   const effectiveEdges = useMemo(() => {
-    if (selectedCodes.has(NONE_CODE_ID)) return [];
+    if (previewCodes.has(NONE_CODE_ID)) return [];
     return allEdges.map(e => ({
       ...e,
-      kappa: selectedCodes.size > 0 ? (e.perCodeKappa[[...selectedCodes][0]] ?? e.kappa) : e.kappa,
+      kappa: previewCodes.size > 0 ? (e.perCodeKappa[[...previewCodes][0]] ?? e.kappa) : e.kappa,
     })).filter(e => {
       // Coder filter means "show only these coders"; selected coders with no
       // visible pair are still rendered as isolated nodes via visibleNodeIds.
       if (filteredCoderIds.size > 0 && (!filteredCoderIds.has(e.coder1) || !filteredCoderIds.has(e.coder2))) return false;
       return true;
     });
-  }, [allEdges, selectedCodes, filteredCoderIds]);
+  }, [allEdges, previewCodes, filteredCoderIds]);
 
   // Filter by range (both ends)
   const visibleEdges = useMemo(() =>
@@ -869,7 +880,6 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
     if (egoNodeIds) return egoNodeIds;
     return visibleNodeIds;
   }, [selectedEdge, egoNodeIds, visibleNodeIds]);
-  const displayedNodeCount = displayedNodeIds.size;
 
   // Keep refs in sync so D3 tick always reads current values
   useEffect(() => { selectedNodeRef.current = selectedNode; }, [selectedNode]);
@@ -900,6 +910,7 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
         const c1n = counts?.coder1 ?? 0;
         const c2n = counts?.coder2 ?? 0;
         const hasCounts = counts !== undefined;
+        const perCodeValue = selectedEdge.perCodeKappa[cid];
         return {
           codeId: cid, codeName: code.name,
           color: resolveCodeColor(code, idx),
@@ -909,6 +920,7 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
           c2n: hasCounts ? c2n : undefined,
           c1Name: selectedEdge.coder1Name,
           c2Name: selectedEdge.coder2Name,
+          agreementBuckets: perCodeValue !== undefined ? agreementDistribution([perCodeValue]) : [],
         };
       }).sort((a, b) => b.kappa - a.kappa);
     }
@@ -919,7 +931,13 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
         visibleEdges.some(e => e.id === `${p.coder1}-${p.coder2}`)
       );
       return weightedCodeKappa(nodePairs, runData.codes.filter((code) => !isUnknownCode(code.name))).map(b => ({
-        ...b, userTexts: textCounts[b.codeId],
+        ...b,
+        userTexts: textCounts[b.codeId],
+        agreementBuckets: agreementDistribution(
+          nodePairs
+            .map((pair) => pair.perCodeKappa?.[b.codeId])
+            .filter((value): value is number => value !== undefined)
+        ),
       }));
     }
     // All visible pairs — collect coders, respecting filteredCoderIds
@@ -933,18 +951,24 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
       visibleEdges.some(e => e.id === `${p.coder1}-${p.coder2}`)
     );
     return weightedCodeKappa(visiblePairs, runData.codes.filter((code) => !isUnknownCode(code.name))).map(b => ({
-      ...b, userTexts: textCounts[b.codeId],
+      ...b,
+      userTexts: textCounts[b.codeId],
+      agreementBuckets: agreementDistribution(
+        visiblePairs
+          .map((pair) => pair.perCodeKappa?.[b.codeId])
+          .filter((value): value is number => value !== undefined)
+      ),
     }));
   }, [runData, selectedEdge, selectedNode, visibleEdges, filteredCoderIds]);
 
   const overallReferenceKappa = runData.overall.kappa;
 
   const [sliderMin, sliderMax] = useMemo(() => {
-    if (!allEdges.length) return [-0.2, 1];
+    if (!allEdges.length) return [-0.2, 1] as const;
     return [
       Math.floor((d3.min(allEdges, e => e.kappa) ?? -0.2) * 20) / 20,
       1,
-    ];
+    ] as const;
   }, [allEdges]);
 
   // Refs for values needed inside D3 tick — avoids stale closure bugs
@@ -967,7 +991,7 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
     const low        = kappaLowRef.current;
     const high       = kappaHighRef.current;
     const nExtent    = d3.extent(edges, e => e.n) as [number, number];
-    const ew         = d3.scaleSqrt().domain([nExtent[0] ?? 0, nExtent[1] ?? 1]).range([1, 7]).clamp(true);
+    const ew         = d3.scaleSqrt().domain([nExtent[0] ?? 0, nExtent[1] ?? 1]).range([2.5, 9]).clamp(true);
 
     edgeG.selectAll<SVGPathElement, Edge>("path.hit-area")
       .data(edges, d => d.id)
@@ -1056,13 +1080,20 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
     const edgeG = g.append("g").attr("class", "edges");
     const nodeG = g.append("g").attr("class", "nodes");
 
+    for (const [index, node] of nodes.entries()) {
+      const angle = (index / Math.max(nodes.length, 1)) * Math.PI * 2;
+      const radius = Math.min(W, H) * 0.22;
+      node.x = W / 2 + Math.cos(angle) * radius;
+      node.y = H / 2 + Math.sin(angle) * radius;
+    }
+
     const sim = d3.forceSimulation<Node>(nodes)
-      .alphaDecay(0.015)
+      .alphaDecay(0.02)
       .force("link", d3.forceLink<Node, Edge>(allEdges)
-        .id(d => String(d.id)).distance(110).strength(0.3))
-      .force("charge", d3.forceManyBody().strength(-280))
+        .id(d => String(d.id)).distance(125).strength(0.34))
+      .force("charge", d3.forceManyBody().strength(-360))
       .force("center",  d3.forceCenter(W / 2, H / 2))
-      .force("collision", d3.forceCollide<Node>().radius(d => d.r + 12));
+      .force("collision", d3.forceCollide<Node>().radius(d => d.r + 16));
 
     const nodeSel = nodeG.selectAll<SVGGElement, Node>("g")
       .data(nodes, d => d.id).join("g").style("cursor", "pointer")
@@ -1099,9 +1130,13 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
     nodeSel.append("text")
       .text(d => d.name.split(" ")[0])
       .attr("text-anchor", "middle").attr("dominant-baseline", "central")
-      .attr("font-size", d => Math.max(8, Math.min(11, d.r * 0.62)))
+      .attr("font-size", d => Math.max(9, Math.min(13, d.r * 0.58)))
       .attr("font-family", "system-ui, sans-serif").attr("font-weight", 600)
       .attr("fill", "#4338ca").attr("pointer-events", "none");
+
+    sim.tick(160);
+    nodeSel.attr("transform", d => `translate(${d.x ?? 0},${d.y ?? 0})`);
+    redrawEdges(edgeG);
 
     sim.on("tick", () => {
       nodeSel.attr("transform", d => `translate(${d.x ?? 0},${d.y ?? 0})`);
@@ -1144,7 +1179,7 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
         d3.select(this).selectAll("text").attr("opacity", 1);
       });
     }
-  }, [allEdges, kappaLow, kappaHigh, selectedEdge, selectedNode, hoveredNodeId, hoveredEdgeId, egoNodeIds, selectedCodes, effectiveEdges, visibleNodeIds, redrawEdges]);
+  }, [allEdges, kappaLow, kappaHigh, selectedEdge, selectedNode, hoveredNodeId, hoveredEdgeId, egoNodeIds, previewCodes, effectiveEdges, visibleNodeIds, redrawEdges]);
 
   // When a node is selected, pin it to center and gently restart sim
   useEffect(() => {
@@ -1170,12 +1205,18 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
     : selectedNode
     ? selectedNode.name
     : "All visible pairs";
+  const previewTextCount = useMemo(() => {
+    if (previewCodes.size === 0) return null;
+    return barData.reduce((sum, bar) => (
+      previewCodes.has(bar.codeId) ? sum + (bar.userTexts ?? 0) : sum
+    ), 0);
+  }, [barData, previewCodes]);
   const barSubtitle = selectedEdge
     ? `κ = ${selectedEdge.kappa.toFixed(3)} · ${kappaLabel(selectedEdge.kappa)} · ${fmt(selectedEdge.n)} co-coded`
     : selectedNode
     ? `Avg κ across ${allEdges.filter(e => e.coder1 === selectedNode.id || e.coder2 === selectedNode.id).length} connections`
-    : selectedCodes.size > 0
-    ? `Per-code κ · ${[...selectedCodes].map(cid => runData?.codes.find(c => String(c.id) === cid)?.name ?? cid).join(', ')} · ${visibleEdges.length} pairs`
+    : previewCodes.size > 0
+    ? `Per-code κ · ${[...previewCodes].map(cid => runData?.codes.find(c => String(c.id) === cid)?.name ?? cid).join(', ')} · ${fmt(previewTextCount ?? 0)} texts`
     : `Weighted avg across ${visibleEdges.length} pairs`;
 
   const handleCoderFilterChange = useCallback((next: Set<number>) => {
@@ -1196,14 +1237,10 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
                 <div>
                   <h1 style={{ margin: 0, fontSize: "1.65rem", color: "#0f172a", fontWeight: 650 }}>Coder agreement network</h1>
                   <div style={{ fontSize: "0.9rem", color: "#64748b", marginTop: 8 }}>
-                    {runData && `Analysis range: ${formatDisplayRange(runData.params.startDate, runData.params.endDate)}.`} Hover a coder or edge to inspect code-level agreement, click to filter.
+                    {runData && `Analysis range: ${formatDisplayRange(runData.params.startDate, runData.params.endDate)}.`} Hover a coder or edge to inspect code-level agreement, click to filter, drag to rearrange.
                   </div>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap", justifyContent: "flex-end" }}>
-                  <RangeSlider
-                    min={sliderMin} max={sliderMax} low={kappaLow} high={kappaHigh}
-                    onChange={(l, h) => { setKappaLow(l); setKappaHigh(h); }}
-                  />
                   {(selectedEdge || selectedNode || selectedCodes.size > 0 || filteredCoderIds.size > 0) && (
                     <button
                       onClick={() => { setSelectedEdge(null); setSelectedNode(null); setSelectedCodes(new Set()); setFilteredCoderIds(new Set()); }}
@@ -1229,6 +1266,10 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
                       onChange={setSelectedCodes}
                     />
                   )}
+                  <RangeSlider
+                    min={sliderMin} max={sliderMax} low={kappaLow} high={kappaHigh}
+                    onChange={(l, h) => { setKappaLow(l); setKappaHigh(h); }}
+                  />
                 </div>
               )}
             </div>
@@ -1239,7 +1280,16 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
           {!runData && (
             <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "0.5rem", color: "#9ca3af" }}>
               <div style={{ fontSize: "0.875rem", fontWeight: 500 }}>No data found</div>
-              <div style={{ fontSize: "0.75rem" }}>Add a newer latest-run.json to update this site</div>
+              <div style={{ fontSize: "0.82rem", color: "#64748b" }}>Add a newer latest-run.json to update this site</div>
+            </div>
+          )}
+
+          {runData && (
+            <div style={{ position: "absolute", top: 12, left: 12, zIndex: 5 }}>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: "0.55rem", padding: "0.5rem 0.85rem", background: "rgba(255,255,255,0.94)", border: "1px solid #e5e7eb", borderRadius: 10, backdropFilter: "blur(4px)" }}>
+                <span style={{ fontSize: "0.68rem", color: "#64748b", textTransform: "uppercase", letterSpacing: "0.06em" }}>Overall κ</span>
+                <span style={{ fontSize: "0.95rem", fontWeight: 700, color: kappaScale(runData.overall.kappa) }}>{runData.overall.kappa.toFixed(3)}</span>
+              </div>
             </div>
           )}
 
@@ -1263,7 +1313,7 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
 
               {/* Kappa color scale */}
               <div>
-                <div style={{ fontSize: "0.6rem", fontWeight: 700, color: "#9ca3af", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: "0.4rem" }}>
+                <div style={{ fontSize: "0.68rem", fontWeight: 700, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: "0.45rem" }}>
                   Agreement (κ)
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
@@ -1277,7 +1327,7 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
                     <div key={v} style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
                       <div style={{ width: 28, height: 3, background: kappaScale(v + 0.1), borderRadius: 2, flexShrink: 0 }} />
                       <span style={{ color: "#6b7280", minWidth: 72 }}>{range}</span>
-                      <span style={{ color: "#9ca3af" }}>{label}</span>
+                      <span style={{ color: "#64748b", fontSize: "0.76rem" }}>{label}</span>
                     </div>
                   ))}
                 </div>
@@ -1288,22 +1338,18 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
 
               {/* Node size legend */}
               <div>
-                <div style={{ fontSize: "0.6rem", fontWeight: 700, color: "#9ca3af", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: "0.4rem" }}>
+                <div style={{ fontSize: "0.68rem", fontWeight: 700, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: "0.45rem" }}>
                   Node size — texts coded
                 </div>
                 <div style={{ display: "flex", alignItems: "flex-end", gap: "0.875rem" }}>
-                  {([
-                    [10, nodeSizeLegend[0]],
-                    [18, nodeSizeLegend[1]],
-                    [26, nodeSizeLegend[2]],
-                  ] as [number, number][]).map(([r, count]) => (
-                    <div key={r} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.3rem" }}>
+                  {nodeLegendItems.map(({ radius, count }) => (
+                    <div key={`${radius}-${count}`} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.3rem" }}>
                       <div style={{
-                        width: r, height: r, borderRadius: "50%",
+                        width: radius, height: radius, borderRadius: "50%",
                         background: "#eef2ff", border: "2px solid #6366f1",
                         flexShrink: 0,
                       }} />
-                      <span style={{ color: "#9ca3af", fontSize: "0.65rem" }}>{count >= 1000 ? `${(count/1000).toFixed(1)}k` : count}</span>
+                      <span style={{ color: "#64748b", fontSize: "0.74rem" }}>{count >= 1000 ? `${(count/1000).toFixed(1)}k` : count}</span>
                     </div>
                   ))}
                 </div>
@@ -1314,18 +1360,14 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
 
               {/* Edge thickness legend */}
               <div>
-                <div style={{ fontSize: "0.6rem", fontWeight: 700, color: "#9ca3af", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: "0.4rem" }}>
+                <div style={{ fontSize: "0.68rem", fontWeight: 700, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: "0.45rem" }}>
                   Edge thickness — co-coded texts
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.3rem" }}>
-                  {([
-                    [1, "few"],
-                    [3, "some"],
-                    [6, "many"],
-                  ] as [number, string][]).map(([w, label]) => (
-                    <div key={w} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                      <div style={{ width: 28, height: w, background: "#94a3b8", borderRadius: 2, flexShrink: 0 }} />
-                      <span style={{ color: "#9ca3af" }}>{label}</span>
+                  {edgeThicknessLegend.map(({ width, count }) => (
+                    <div key={`${width}-${count}`} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                      <div style={{ width: 28, height: width, background: "#94a3b8", borderRadius: 2, flexShrink: 0 }} />
+                      <span style={{ color: "#64748b", fontSize: "0.76rem" }}>{fmt(count)}</span>
                     </div>
                   ))}
                 </div>
@@ -1357,18 +1399,11 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
           <aside style={{ background: "white", border: "1px solid #e5e7eb", borderRadius: 18, padding: "1.25rem", minHeight: 0, overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "0 10px 30px rgba(15,23,42,0.05)" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.8rem", marginBottom: "0.85rem" }}>
               <div>
-                <div style={{ fontSize: "0.98rem", fontWeight: 800, color: "#0f172a" }}>Selection details</div>
-                <div style={{ marginTop: 5, fontSize: "0.82rem", lineHeight: 1.5, color: "#64748b" }}>
-                  Click a coder or edge to pin its code-level breakdown here. Use the filters above to narrow the network before selecting a node or pair.
+                <div style={{ fontSize: "0.98rem", fontWeight: 800, color: "#0f172a" }}>Emotion filters and details</div>
+                <div style={{ marginTop: 5, fontSize: "0.86rem", lineHeight: 1.55, color: "#475569" }}>
+                  Filter emotions with the chart bars below, or click a coder or edge in the network to focus this panel on that selection.
                 </div>
               </div>
-              {runData && (
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "0.55rem" }}>
-                  <StatPill label="Overall κ" value={runData.overall.kappa.toFixed(3)} color={kappaScale(runData.overall.kappa)} />
-                  <StatPill label="Coders" value={`${displayedNodeCount} / ${nodes.length}`} />
-                  <StatPill label="Visible" value={`${displayedEdges.length} / ${allEdges.length}`} />
-                </div>
-              )}
             </div>
             <div style={{
               flex: 1, minHeight: 0, background: "white", borderRadius: 12,
@@ -1378,15 +1413,17 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
               display: "flex", flexDirection: "column", overflow: "hidden",
             }}>
               {barData.length > 0
-                ? <KappaBarChart bars={barData} title={barTitle} subtitle={barSubtitle} selectedCodes={selectedCodes}
+                ? <KappaBarChart bars={barData} title={barTitle} subtitle={barSubtitle} selectedCodes={previewCodes}
                     onCodeClick={cid => setSelectedCodes(prev => {
                       const n = new Set(prev);
                       if (n.has(cid)) n.delete(cid);
                       else n.add(cid);
                       return n;
                     })}
+                    onCodeHover={setHoveredCodeId}
+                    onCodeLeave={() => setHoveredCodeId(null)}
                     referenceKappa={overallReferenceKappa} />
-                : <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", color: "#94a3b8", fontSize: "0.86rem", padding: "1.25rem", textAlign: "center" }}>
+                : <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", color: "#64748b", fontSize: "0.92rem", padding: "1.25rem", textAlign: "center" }}>
                     Click an edge or coder to see a per-code agreement breakdown.
                   </div>
               }
@@ -1400,6 +1437,8 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
         <div style={{ position: "fixed", left: tooltip.x + 14, top: tooltip.y - 14, background: "#1f2937", color: "white", borderRadius: 8, padding: "0.7rem 0.85rem", fontSize: "0.75rem", pointerEvents: "none", zIndex: 1000, boxShadow: "0 8px 20px rgba(0,0,0,0.25)", maxWidth: 320 }}>
           {tooltip.type === "node" && tooltip.node && (() => {
             const counts = runData?.coderCodeCounts?.[String(tooltip.node!.id)] ?? {};
+            const connectedEdges = visibleEdges.filter((edge) => edge.coder1 === tooltip.node!.id || edge.coder2 === tooltip.node!.id);
+            const averageKappa = connectedEdges.length > 0 ? d3.mean(connectedEdges, (edge) => edge.kappa) ?? null : null;
             const codesToShow = selectedCodes.size > 0
               ? runData?.codes.filter(c => selectedCodes.has(String(c.id))) ?? []
               : runData?.codes ?? [];
@@ -1413,6 +1452,11 @@ export default function CoderNetwork({ initialRunData }: { initialRunData: RunDa
             return (
               <>
                 <div style={{ fontWeight: 700, marginBottom: 6, fontSize: "0.85rem" }}>{tooltip.node!.name}</div>
+                {averageKappa !== null && (
+                  <div style={{ marginBottom: 8, fontSize: "0.73rem", color: "#cbd5e1" }}>
+                    Avg agreement: <span style={{ color: kappaScale(Math.max(0, averageKappa)), fontWeight: 700 }}>{averageKappa.toFixed(3)}</span> · {kappaLabel(averageKappa)}
+                  </div>
+                )}
                 <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.72rem" }}>
                   <thead>
                     <tr>
