@@ -1,4 +1,4 @@
-const isProd = process.env.NODE_ENV === 'production';
+const isGitHubPagesBuild = process.env.GITHUB_ACTIONS === 'true';
 const repoName = 'agreement-visualizations';
 
 /** @type {import('next').NextConfig} */
@@ -6,8 +6,8 @@ const nextConfig = {
   output: 'export',
   images: { unoptimized: true },
   trailingSlash: true,
-  basePath: isProd ? `/${repoName}` : '',
-  assetPrefix: isProd ? `/${repoName}/` : '',
+  basePath: isGitHubPagesBuild ? `/${repoName}` : '',
+  assetPrefix: isGitHubPagesBuild ? `/${repoName}/` : '',
 };
 
 export default nextConfig;
