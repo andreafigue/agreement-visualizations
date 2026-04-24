@@ -191,20 +191,7 @@ function SourceInfoButton({ href }: { href: string }) {
           <div>
             Figueroa, A., Ghosh, S., & Aragon, C. (2023, July). Generalized Cohen&apos;s kappa: a novel inter-rater reliability metric for non-mutually exclusive categories. In International Conference on Human-Computer Interaction (pp. 19-34). Cham: Springer Nature Switzerland.
           </div>
-          <a
-            href={href}
-            target="_blank"
-            rel="noreferrer"
-            style={{
-              display: "inline-flex",
-              marginTop: 8,
-              color: "#93c5fd",
-              textDecoration: "none",
-              fontWeight: 700,
-            }}
-          >
-            Open paper
-          </a>
+
         </div>
       )}
     </div>
