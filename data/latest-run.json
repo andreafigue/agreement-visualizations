@@ -1,0 +1,4387 @@
+{
+  "label": "Emotions-2020-2021",
+  "createdAt": "2026-04-24T15:38:34.681Z",
+  "params": {
+    "startDate": "2020-10-23",
+    "endDate": "2021-03-14",
+    "minCodings": 500,
+    "dimension": "emotions",
+    "seed": 258314,
+    "coderIds": [],
+    "batchIds": []
+  },
+  "coders": [
+    {
+      "id": 24,
+      "name": "Fatima",
+      "total": 6500
+    },
+    {
+      "id": 20,
+      "name": "María",
+      "total": 5500
+    },
+    {
+      "id": 25,
+      "name": "Jason",
+      "total": 3000
+    },
+    {
+      "id": 19,
+      "name": "Nadia",
+      "total": 2500
+    },
+    {
+      "id": 23,
+      "name": "Dimitri",
+      "total": 2000
+    },
+    {
+      "id": 29,
+      "name": "Lena",
+      "total": 1500
+    },
+    {
+      "id": 21,
+      "name": "John",
+      "total": 500
+    },
+    {
+      "id": 28,
+      "name": "Ravi",
+      "total": 500
+    }
+  ],
+  "codes": [
+    {
+      "id": 1,
+      "name": "Anger / Frustration",
+      "color": "#FC5C56"
+    },
+    {
+      "id": 2,
+      "name": "Anticipation / Hope",
+      "color": "#FFB05C"
+    },
+    {
+      "id": 11,
+      "name": "Confused",
+      "color": "#DED4D4"
+    },
+    {
+      "id": 20,
+      "name": "Dislike",
+      "color": "#DED4D4"
+    },
+    {
+      "id": 5,
+      "name": "Disturbed / Disgust",
+      "color": "#41DB8A"
+    },
+    {
+      "id": 3,
+      "name": "Joy / Happiness",
+      "color": "#FFE663"
+    },
+    {
+      "id": 25,
+      "name": "Like",
+      "color": "#DED4D4"
+    },
+    {
+      "id": 9,
+      "name": "No emotion",
+      "color": "gray"
+    },
+    {
+      "id": 7,
+      "name": "Sadness",
+      "color": "#519DFC"
+    },
+    {
+      "id": 6,
+      "name": "Surprise",
+      "color": "#3CE8FF"
+    },
+    {
+      "id": 10,
+      "name": "Unknown",
+      "color": "#00000"
+    }
+  ],
+  "overall": {
+    "kappa": 0.563,
+    "observed": 0.905,
+    "chance": 0.782,
+    "perCodeObserved": {
+      "1": 0.9575,
+      "2": 0.860875,
+      "3": 0.7375,
+      "5": 0.952625,
+      "6": 0.9535,
+      "7": 0.92325,
+      "9": 0.96075,
+      "10": 0.960375,
+      "11": 0.971625,
+      "20": 0.965875,
+      "25": 0.707875
+    },
+    "perCodeChance": {
+      "1": 0.9080000000000001,
+      "2": 0.49528,
+      "3": 0.49004000000000003,
+      "5": 0.9183199999999999,
+      "6": 0.9152599999999997,
+      "7": 0.7778999999999999,
+      "9": 0.91536,
+      "10": 0.70734,
+      "11": 0.9290199999999998,
+      "20": 0.94446,
+      "25": 0.5372000000000001
+    }
+  },
+  "pairwise": [
+    {
+      "coder1": 24,
+      "coder2": 20,
+      "coder1Name": "Fatima",
+      "coder2Name": "María",
+      "kappa": 0.4975343349617477,
+      "observed": 0.9008863636363637,
+      "chance": 0.8027454545454545,
+      "n": 4000,
+      "perCodeKappa": {
+        "1": 0.366,
+        "2": 0.654,
+        "3": 0.341,
+        "5": 0.378,
+        "6": 0.302,
+        "7": 0.672,
+        "9": 0.459,
+        "10": 0.933,
+        "11": 0.573,
+        "20": 0.351,
+        "25": 0.247
+      },
+      "perCodeCounts": {
+        "1": {
+          "coder1": 99,
+          "coder2": 164,
+          "shared": 222
+        },
+        "2": {
+          "coder1": 1296,
+          "coder2": 1669,
+          "shared": 1802
+        },
+        "3": {
+          "coder1": 881,
+          "coder2": 1845,
+          "shared": 1960
+        },
+        "5": {
+          "coder1": 132,
+          "coder2": 171,
+          "shared": 248
+        },
+        "6": {
+          "coder1": 98,
+          "coder2": 154,
+          "shared": 214
+        },
+        "7": {
+          "coder1": 377,
+          "coder2": 562,
+          "shared": 620
+        },
+        "9": {
+          "coder1": 118,
+          "coder2": 75,
+          "shared": 148
+        },
+        "10": {
+          "coder1": 493,
+          "coder2": 497,
+          "shared": 525
+        },
+        "11": {
+          "coder1": 110,
+          "coder2": 107,
+          "shared": 155
+        },
+        "20": {
+          "coder1": 75,
+          "coder2": 89,
+          "shared": 142
+        },
+        "25": {
+          "coder1": 1516,
+          "coder2": 1006,
+          "shared": 1906
+        }
+      }
+    },
+    {
+      "coder1": 24,
+      "coder2": 25,
+      "coder1Name": "Fatima",
+      "coder2Name": "Jason",
+      "kappa": 0.46374496688962114,
+      "observed": 0.9023333333333333,
+      "chance": 0.8178727272727272,
+      "n": 3000,
+      "perCodeKappa": {
+        "1": 0.562,
+        "2": 0.57,
+        "3": 0.351,
+        "5": 0.293,
+        "6": 0.231,
+        "7": 0.414,
+        "9": 0.317,
+        "10": 0.739,
+        "11": 0.506,
+        "20": 0.2,
+        "25": 0.352
+      },
+      "perCodeCounts": {
+        "1": {
+          "coder1": 83,
+          "coder2": 45,
+          "shared": 95
+        },
+        "2": {
+          "coder1": 890,
+          "coder2": 849,
+          "shared": 1135
+        },
+        "3": {
+          "coder1": 662,
+          "coder2": 899,
+          "shared": 1165
+        },
+        "5": {
+          "coder1": 90,
+          "coder2": 35,
+          "shared": 110
+        },
+        "6": {
+          "coder1": 82,
+          "coder2": 69,
+          "shared": 132
+        },
+        "7": {
+          "coder1": 266,
+          "coder2": 73,
+          "shared": 276
+        },
+        "9": {
+          "coder1": 83,
+          "coder2": 93,
+          "shared": 148
+        },
+        "10": {
+          "coder1": 491,
+          "coder2": 668,
+          "shared": 701
+        },
+        "11": {
+          "coder1": 89,
+          "coder2": 53,
+          "shared": 111
+        },
+        "20": {
+          "coder1": 62,
+          "coder2": 27,
+          "shared": 80
+        },
+        "25": {
+          "coder1": 1041,
+          "coder2": 1277,
+          "shared": 1617
+        }
+      }
+    },
+    {
+      "coder1": 24,
+      "coder2": 19,
+      "coder1Name": "Fatima",
+      "coder2Name": "Nadia",
+      "kappa": 0.5306922926063936,
+      "observed": 0.9129818181818182,
+      "chance": 0.8145818181818182,
+      "n": 2500,
+      "perCodeKappa": {
+        "1": 0.467,
+        "2": 0.592,
+        "3": 0.405,
+        "5": 0.356,
+        "6": 0.318,
+        "7": 0.61,
+        "9": 0.452,
+        "10": 0.901,
+        "11": 0.437,
+        "20": 0.296,
+        "25": 0.432
+      },
+      "perCodeCounts": {
+        "1": {
+          "coder1": 74,
+          "coder2": 41,
+          "shared": 88
+        },
+        "2": {
+          "coder1": 731,
+          "coder2": 936,
+          "shared": 1054
+        },
+        "3": {
+          "coder1": 579,
+          "coder2": 457,
+          "shared": 767
+        },
+        "5": {
+          "coder1": 75,
+          "coder2": 79,
+          "shared": 128
+        },
+        "6": {
+          "coder1": 70,
+          "coder2": 50,
+          "shared": 105
+        },
+        "7": {
+          "coder1": 231,
+          "coder2": 205,
+          "shared": 300
+        },
+        "9": {
+          "coder1": 67,
+          "coder2": 124,
+          "shared": 150
+        },
+        "10": {
+          "coder1": 377,
+          "coder2": 392,
+          "shared": 418
+        },
+        "11": {
+          "coder1": 76,
+          "coder2": 62,
+          "shared": 109
+        },
+        "20": {
+          "coder1": 51,
+          "coder2": 93,
+          "shared": 126
+        },
+        "25": {
+          "coder1": 831,
+          "coder2": 1154,
+          "shared": 1328
+        }
+      }
+    },
+    {
+      "coder1": 24,
+      "coder2": 23,
+      "coder1Name": "Fatima",
+      "coder2Name": "Dimitri",
+      "kappa": 0.40991871591727536,
+      "observed": 0.8957272727272727,
+      "chance": 0.8232909090909091,
+      "n": 2000,
+      "perCodeKappa": {
+        "1": 0.569,
+        "2": 0.375,
+        "3": 0.333,
+        "5": 0.25,
+        "6": 0.39,
+        "7": 0.51,
+        "9": 0.476,
+        "10": 0.796,
+        "11": 0.529,
+        "20": 0.122,
+        "25": 0.16
+      },
+      "perCodeCounts": {
+        "1": {
+          "coder1": 59,
+          "coder2": 73,
+          "shared": 96
+        },
+        "2": {
+          "coder1": 584,
+          "coder2": 311,
+          "shared": 664
+        },
+        "3": {
+          "coder1": 440,
+          "coder2": 826,
+          "shared": 930
+        },
+        "5": {
+          "coder1": 55,
+          "coder2": 17,
+          "shared": 63
+        },
+        "6": {
+          "coder1": 35,
+          "coder2": 69,
+          "shared": 88
+        },
+        "7": {
+          "coder1": 143,
+          "coder2": 58,
+          "shared": 150
+        },
+        "9": {
+          "coder1": 61,
+          "coder2": 72,
+          "shared": 101
+        },
+        "10": {
+          "coder1": 369,
+          "coder2": 481,
+          "shared": 494
+        },
+        "11": {
+          "coder1": 67,
+          "coder2": 38,
+          "shared": 77
+        },
+        "20": {
+          "coder1": 42,
+          "coder2": 27,
+          "shared": 64
+        },
+        "25": {
+          "coder1": 639,
+          "coder2": 482,
+          "shared": 894
+        }
+      }
+    },
+    {
+      "coder1": 24,
+      "coder2": 29,
+      "coder1Name": "Fatima",
+      "coder2Name": "Lena",
+      "kappa": 0.4287494806813466,
+      "observed": 0.9,
+      "chance": 0.8249454545454544,
+      "n": 500,
+      "perCodeKappa": {
+        "1": 0.294,
+        "2": 0.806,
+        "3": 0.23,
+        "5": 0.321,
+        "6": 0.14,
+        "7": 0.679,
+        "9": 0.29,
+        "10": 0.976,
+        "11": 0.43,
+        "20": 0.153,
+        "25": 0.104
+      },
+      "perCodeCounts": {
+        "1": {
+          "coder1": 8,
+          "coder2": 8,
+          "shared": 14
+        },
+        "2": {
+          "coder1": 225,
+          "coder2": 217,
+          "shared": 245
+        },
+        "3": {
+          "coder1": 153,
+          "coder2": 319,
+          "shared": 339
+        },
+        "5": {
+          "coder1": 26,
+          "coder2": 8,
+          "shared": 30
+        },
+        "6": {
+          "coder1": 5,
+          "coder2": 5,
+          "shared": 9
+        },
+        "7": {
+          "coder1": 43,
+          "coder2": 30,
+          "shared": 49
+        },
+        "9": {
+          "coder1": 6,
+          "coder2": 25,
+          "shared": 27
+        },
+        "10": {
+          "coder1": 19,
+          "coder2": 18,
+          "shared": 19
+        },
+        "11": {
+          "coder1": 12,
+          "coder2": 5,
+          "shared": 14
+        },
+        "20": {
+          "coder1": 5,
+          "coder2": 0,
+          "shared": 5
+        },
+        "25": {
+          "coder1": 214,
+          "coder2": 37,
+          "shared": 218
+        }
+      }
+    },
+    {
+      "coder1": 24,
+      "coder2": 21,
+      "coder1Name": "Fatima",
+      "coder2Name": "John",
+      "kappa": 0.3716447047340167,
+      "observed": 0.9063636363636364,
+      "chance": 0.8509818181818182,
+      "n": 500,
+      "perCodeKappa": {
+        "1": 0.365,
+        "2": 0.471,
+        "3": 0.187,
+        "5": 0.384,
+        "6": 0.561,
+        "7": 0.518,
+        "9": 0.332,
+        "10": 0.097,
+        "11": 0.519,
+        "20": 0.136,
+        "25": 0.33
+      },
+      "perCodeCounts": {
+        "1": {
+          "coder1": 4,
+          "coder2": 6,
+          "shared": 9
+        },
+        "2": {
+          "coder1": 201,
+          "coder2": 97,
+          "shared": 208
+        },
+        "3": {
+          "coder1": 110,
+          "coder2": 22,
+          "shared": 119
+        },
+        "5": {
+          "coder1": 9,
+          "coder2": 4,
+          "shared": 11
+        },
+        "6": {
+          "coder1": 11,
+          "coder2": 10,
+          "shared": 15
+        },
+        "7": {
+          "coder1": 48,
+          "coder2": 23,
+          "shared": 54
+        },
+        "9": {
+          "coder1": 11,
+          "coder2": 29,
+          "shared": 35
+        },
+        "10": {
+          "coder1": 1,
+          "coder2": 12,
+          "shared": 13
+        },
+        "11": {
+          "coder1": 10,
+          "coder2": 17,
+          "shared": 21
+        },
+        "20": {
+          "coder1": 5,
+          "coder2": 2,
+          "shared": 7
+        },
+        "25": {
+          "coder1": 285,
+          "coder2": 376,
+          "shared": 412
+        }
+      }
+    },
+    {
+      "coder1": 20,
+      "coder2": 25,
+      "coder1Name": "María",
+      "coder2Name": "Jason",
+      "kappa": 0.40891828984442047,
+      "observed": 0.883030303030303,
+      "chance": 0.8021090909090908,
+      "n": 1500,
+      "perCodeKappa": {
+        "1": 0.216,
+        "2": 0.601,
+        "3": 0.528,
+        "5": 0.29,
+        "6": 0.343,
+        "7": 0.272,
+        "9": 0.412,
+        "10": 0.526,
+        "11": 0.358,
+        "20": 0.12,
+        "25": 0.134
+      },
+      "perCodeCounts": {
+        "1": {
+          "coder1": 68,
+          "coder2": 19,
+          "shared": 81
+        },
+        "2": {
+          "coder1": 629,
+          "coder2": 427,
+          "shared": 668
+        },
+        "3": {
+          "coder1": 745,
+          "coder2": 603,
+          "shared": 844
+        },
+        "5": {
+          "coder1": 74,
+          "coder2": 20,
+          "shared": 85
+        },
+        "6": {
+          "coder1": 55,
+          "coder2": 46,
+          "shared": 86
+        },
+        "7": {
+          "coder1": 237,
+          "coder2": 41,
+          "shared": 240
+        },
+        "9": {
+          "coder1": 32,
+          "coder2": 53,
+          "shared": 70
+        },
+        "10": {
+          "coder1": 132,
+          "coder2": 279,
+          "shared": 296
+        },
+        "11": {
+          "coder1": 44,
+          "coder2": 19,
+          "shared": 55
+        },
+        "20": {
+          "coder1": 31,
+          "coder2": 13,
+          "shared": 41
+        },
+        "25": {
+          "coder1": 336,
+          "coder2": 579,
+          "shared": 735
+        }
+      }
+    },
+    {
+      "coder1": 20,
+      "coder2": 19,
+      "coder1Name": "María",
+      "coder2Name": "Nadia",
+      "kappa": 0.5296223375693572,
+      "observed": 0.9044363636363636,
+      "chance": 0.7968363636363637,
+      "n": 2500,
+      "perCodeKappa": {
+        "1": 0.531,
+        "2": 0.753,
+        "3": 0.37,
+        "5": 0.298,
+        "6": 0.4,
+        "7": 0.632,
+        "9": 0.472,
+        "10": 0.907,
+        "11": 0.434,
+        "20": 0.295,
+        "25": 0.3
+      },
+      "perCodeCounts": {
+        "1": {
+          "coder1": 90,
+          "coder2": 41,
+          "shared": 102
+        },
+        "2": {
+          "coder1": 993,
+          "coder2": 936,
+          "shared": 1104
+        },
+        "3": {
+          "coder1": 1050,
+          "coder2": 457,
+          "shared": 1096
+        },
+        "5": {
+          "coder1": 115,
+          "coder2": 79,
+          "shared": 170
+        },
+        "6": {
+          "coder1": 95,
+          "coder2": 50,
+          "shared": 122
+        },
+        "7": {
+          "coder1": 335,
+          "coder2": 205,
+          "shared": 366
+        },
+        "9": {
+          "coder1": 49,
+          "coder2": 124,
+          "shared": 136
+        },
+        "10": {
+          "coder1": 376,
+          "coder2": 392,
+          "shared": 414
+        },
+        "11": {
+          "coder1": 59,
+          "coder2": 62,
+          "shared": 96
+        },
+        "20": {
+          "coder1": 48,
+          "coder2": 93,
+          "shared": 120
+        },
+        "25": {
+          "coder1": 665,
+          "coder2": 1154,
+          "shared": 1315
+        }
+      }
+    },
+    {
+      "coder1": 20,
+      "coder2": 23,
+      "coder1Name": "María",
+      "coder2Name": "Dimitri",
+      "kappa": 0.2332873880082701,
+      "observed": 0.8381818181818181,
+      "chance": 0.7889454545454545,
+      "n": 500,
+      "perCodeKappa": {
+        "1": 0.403,
+        "2": 0.138,
+        "3": 0.401,
+        "5": 0.355,
+        "6": 0.301,
+        "7": 0.175,
+        "9": 0.573,
+        "10": 0.015,
+        "11": 0.431,
+        "20": 0.304,
+        "25": 0.133
+      },
+      "perCodeCounts": {
+        "1": {
+          "coder1": 19,
+          "coder2": 16,
+          "shared": 29
+        },
+        "2": {
+          "coder1": 237,
+          "coder2": 51,
+          "shared": 242
+        },
+        "3": {
+          "coder1": 226,
+          "coder2": 152,
+          "shared": 261
+        },
+        "5": {
+          "coder1": 27,
+          "coder2": 5,
+          "shared": 28
+        },
+        "6": {
+          "coder1": 16,
+          "coder2": 29,
+          "shared": 39
+        },
+        "7": {
+          "coder1": 82,
+          "coder2": 5,
+          "shared": 83
+        },
+        "9": {
+          "coder1": 19,
+          "coder2": 28,
+          "shared": 34
+        },
+        "10": {
+          "coder1": 6,
+          "coder2": 129,
+          "shared": 132
+        },
+        "11": {
+          "coder1": 16,
+          "coder2": 10,
+          "shared": 21
+        },
+        "20": {
+          "coder1": 17,
+          "coder2": 15,
+          "shared": 27
+        },
+        "25": {
+          "coder1": 139,
+          "coder2": 216,
+          "shared": 279
+        }
+      }
+    },
+    {
+      "coder1": 20,
+      "coder2": 29,
+      "coder1Name": "María",
+      "coder2Name": "Lena",
+      "kappa": 0.4790362953692118,
+      "observed": 0.9091818181818182,
+      "chance": 0.8256727272727272,
+      "n": 1000,
+      "perCodeKappa": {
+        "1": 0.497,
+        "2": 0.566,
+        "3": 0.539,
+        "5": 0.207,
+        "6": 0.393,
+        "7": 0.484,
+        "9": 0.36,
+        "10": 0.331,
+        "11": 0.558,
+        "20": 0.242,
+        "25": 0.332
+      },
+      "perCodeCounts": {
+        "1": {
+          "coder1": 86,
+          "coder2": 36,
+          "shared": 98
+        },
+        "2": {
+          "coder1": 569,
+          "coder2": 409,
+          "shared": 599
+        },
+        "3": {
+          "coder1": 751,
+          "coder2": 680,
+          "shared": 822
+        },
+        "5": {
+          "coder1": 47,
+          "coder2": 4,
+          "shared": 50
+        },
+        "6": {
+          "coder1": 59,
+          "coder2": 19,
+          "shared": 66
+        },
+        "7": {
+          "coder1": 146,
+          "coder2": 44,
+          "shared": 150
+        },
+        "9": {
+          "coder1": 6,
+          "coder2": 29,
+          "shared": 31
+        },
+        "10": {
+          "coder1": 2,
+          "coder2": 19,
+          "shared": 20
+        },
+        "11": {
+          "coder1": 43,
+          "coder2": 13,
+          "shared": 44
+        },
+        "20": {
+          "coder1": 36,
+          "coder2": 3,
+          "shared": 37
+        },
+        "25": {
+          "coder1": 147,
+          "coder2": 97,
+          "shared": 205
+        }
+      }
+    },
+    {
+      "coder1": 20,
+      "coder2": 28,
+      "coder1Name": "María",
+      "coder2Name": "Ravi",
+      "kappa": 0.603599742875509,
+      "observed": 0.9327272727272727,
+      "chance": 0.8302909090909091,
+      "n": 500,
+      "perCodeKappa": {
+        "1": 0.694,
+        "2": 0.752,
+        "3": 0.661,
+        "5": 0.606,
+        "6": 0.553,
+        "7": 0.55,
+        "9": 0.527,
+        "10": 0.486,
+        "11": 0.623,
+        "20": 0.206,
+        "25": 0.2
+      },
+      "perCodeCounts": {
+        "1": {
+          "coder1": 33,
+          "coder2": 26,
+          "shared": 40
+        },
+        "2": {
+          "coder1": 221,
+          "coder2": 176,
+          "shared": 229
+        },
+        "3": {
+          "coder1": 372,
+          "coder2": 412,
+          "shared": 430
+        },
+        "5": {
+          "coder1": 26,
+          "coder2": 13,
+          "shared": 29
+        },
+        "6": {
+          "coder1": 20,
+          "coder2": 25,
+          "shared": 35
+        },
+        "7": {
+          "coder1": 75,
+          "coder2": 35,
+          "shared": 82
+        },
+        "9": {
+          "coder1": 3,
+          "coder2": 8,
+          "shared": 9
+        },
+        "10": {
+          "coder1": 6,
+          "coder2": 13,
+          "shared": 16
+        },
+        "11": {
+          "coder1": 13,
+          "coder2": 6,
+          "shared": 14
+        },
+        "20": {
+          "coder1": 15,
+          "coder2": 0,
+          "shared": 15
+        },
+        "25": {
+          "coder1": 70,
+          "coder2": 4,
+          "shared": 72
+        }
+      }
+    },
+    {
+      "coder1": 25,
+      "coder2": 19,
+      "coder1Name": "Jason",
+      "coder2Name": "Nadia",
+      "kappa": 0.28754266211604074,
+      "observed": 0.8633636363636363,
+      "chance": 0.8082181818181818,
+      "n": 1000,
+      "perCodeKappa": {
+        "1": 0.435,
+        "2": 0.49,
+        "3": 0.163,
+        "5": 0.27,
+        "6": 0.34,
+        "7": 0.364,
+        "9": 0.378,
+        "10": 0.2,
+        "11": 0.225,
+        "20": -0.026,
+        "25": 0.241
+      },
+      "perCodeCounts": {
+        "1": {
+          "coder1": 15,
+          "coder2": 18,
+          "shared": 27
+        },
+        "2": {
+          "coder1": 263,
+          "coder2": 344,
+          "shared": 414
+        },
+        "3": {
+          "coder1": 548,
+          "coder2": 235,
+          "shared": 602
+        },
+        "5": {
+          "coder1": 16,
+          "coder2": 50,
+          "shared": 59
+        },
+        "6": {
+          "coder1": 39,
+          "coder2": 24,
+          "shared": 55
+        },
+        "7": {
+          "coder1": 35,
+          "coder2": 117,
+          "shared": 124
+        },
+        "9": {
+          "coder1": 37,
+          "coder2": 37,
+          "shared": 61
+        },
+        "10": {
+          "coder1": 157,
+          "coder2": 38,
+          "shared": 179
+        },
+        "11": {
+          "coder1": 6,
+          "coder2": 31,
+          "shared": 34
+        },
+        "20": {
+          "coder1": 5,
+          "coder2": 26,
+          "shared": 31
+        },
+        "25": {
+          "coder1": 339,
+          "coder2": 507,
+          "shared": 607
+        }
+      }
+    },
+    {
+      "coder1": 25,
+      "coder2": 23,
+      "coder1Name": "Jason",
+      "coder2Name": "Dimitri",
+      "kappa": 0.4035956227201666,
+      "observed": 0.8959545454545454,
+      "chance": 0.8255454545454546,
+      "n": 2000,
+      "perCodeKappa": {
+        "1": 0.49,
+        "2": 0.361,
+        "3": 0.324,
+        "5": 0.39,
+        "6": 0.296,
+        "7": 0.591,
+        "9": 0.461,
+        "10": 0.862,
+        "11": 0.446,
+        "20": 0.245,
+        "25": 0.102
+      },
+      "perCodeCounts": {
+        "1": {
+          "coder1": 37,
+          "coder2": 73,
+          "shared": 81
+        },
+        "2": {
+          "coder1": 535,
+          "coder2": 311,
+          "shared": 646
+        },
+        "3": {
+          "coder1": 469,
+          "coder2": 826,
+          "shared": 944
+        },
+        "5": {
+          "coder1": 25,
+          "coder2": 17,
+          "shared": 36
+        },
+        "6": {
+          "coder1": 33,
+          "coder2": 69,
+          "shared": 89
+        },
+        "7": {
+          "coder1": 42,
+          "coder2": 58,
+          "shared": 73
+        },
+        "9": {
+          "coder1": 63,
+          "coder2": 72,
+          "shared": 105
+        },
+        "10": {
+          "coder1": 529,
+          "coder2": 481,
+          "shared": 553
+        },
+        "11": {
+          "coder1": 39,
+          "coder2": 38,
+          "shared": 61
+        },
+        "20": {
+          "coder1": 17,
+          "coder2": 27,
+          "shared": 38
+        },
+        "25": {
+          "coder1": 780,
+          "coder2": 482,
+          "shared": 1025
+        }
+      }
+    },
+    {
+      "coder1": 19,
+      "coder2": 23,
+      "coder1Name": "Nadia",
+      "coder2Name": "Dimitri",
+      "kappa": 0.26261087716154446,
+      "observed": 0.8503636363636363,
+      "chance": 0.7970727272727273,
+      "n": 500,
+      "perCodeKappa": {
+        "1": 0.336,
+        "2": 0.183,
+        "3": 0.498,
+        "5": 0.149,
+        "6": 0.273,
+        "7": 0.128,
+        "9": 0.591,
+        "10": 0.035,
+        "11": 0.298,
+        "20": 0.288,
+        "25": 0.214
+      },
+      "perCodeCounts": {
+        "1": {
+          "coder1": 15,
+          "coder2": 16,
+          "shared": 25
+        },
+        "2": {
+          "coder1": 234,
+          "coder2": 51,
+          "shared": 236
+        },
+        "3": {
+          "coder1": 170,
+          "coder2": 152,
+          "shared": 216
+        },
+        "5": {
+          "coder1": 29,
+          "coder2": 5,
+          "shared": 33
+        },
+        "6": {
+          "coder1": 12,
+          "coder2": 29,
+          "shared": 37
+        },
+        "7": {
+          "coder1": 56,
+          "coder2": 5,
+          "shared": 57
+        },
+        "9": {
+          "coder1": 23,
+          "coder2": 28,
+          "shared": 37
+        },
+        "10": {
+          "coder1": 15,
+          "coder2": 129,
+          "shared": 140
+        },
+        "11": {
+          "coder1": 18,
+          "coder2": 10,
+          "shared": 24
+        },
+        "20": {
+          "coder1": 14,
+          "coder2": 15,
+          "shared": 26
+        },
+        "25": {
+          "coder1": 161,
+          "coder2": 216,
+          "shared": 281
+        }
+      }
+    }
+  ],
+  "agreementTimeline": {
+    "stepDays": 7,
+    "rangeStart": "2020-10-17",
+    "rangeEnd": "2021-03-19",
+    "windows": {
+      "7": {
+        "overall": {
+          "series": [
+            {
+              "id": "overall",
+              "name": "Overall agreement",
+              "color": "#475569",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.432,
+                  "n": 3091,
+                  "totalN": 3091,
+                  "startDate": "2020-10-31",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.547,
+                  "n": 3371,
+                  "totalN": 3371,
+                  "startDate": "2020-11-07",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.571,
+                  "n": 1827,
+                  "totalN": 1827,
+                  "startDate": "2020-11-14",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.689,
+                  "n": 1985,
+                  "totalN": 1985,
+                  "startDate": "2020-11-21",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.659,
+                  "n": 6069,
+                  "totalN": 6069,
+                  "startDate": "2020-11-28",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.686,
+                  "n": 4132,
+                  "totalN": 4132,
+                  "startDate": "2020-12-05",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.449,
+                  "n": 1577,
+                  "totalN": 1577,
+                  "startDate": "2021-01-16",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.361,
+                  "n": 1527,
+                  "totalN": 1527,
+                  "startDate": "2021-01-23",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.602,
+                  "n": 1572,
+                  "totalN": 1572,
+                  "startDate": "2021-01-30",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.412,
+                  "n": 2864,
+                  "totalN": 2864,
+                  "startDate": "2021-02-06",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.518,
+                  "n": 1674,
+                  "totalN": 1674,
+                  "startDate": "2021-02-20",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.421,
+                  "n": 1388,
+                  "totalN": 1388,
+                  "startDate": "2021-02-27",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            }
+          ],
+          "windowDays": 7
+        },
+        "code": {
+          "series": [
+            {
+              "id": "1",
+              "name": "Anger / Frustration",
+              "color": "#FC5C56",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.31,
+                  "n": 52,
+                  "totalN": 3091,
+                  "startDate": "2020-10-31",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.672,
+                  "n": 83,
+                  "totalN": 3371,
+                  "startDate": "2020-11-07",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.747,
+                  "n": 47,
+                  "totalN": 1827,
+                  "startDate": "2020-11-14",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.571,
+                  "n": 31,
+                  "totalN": 1985,
+                  "startDate": "2020-11-21",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.65,
+                  "n": 108,
+                  "totalN": 6069,
+                  "startDate": "2020-11-28",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.461,
+                  "n": 67,
+                  "totalN": 4132,
+                  "startDate": "2020-12-05",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.421,
+                  "n": 39,
+                  "totalN": 1577,
+                  "startDate": "2021-01-16",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.213,
+                  "n": 32,
+                  "totalN": 1527,
+                  "startDate": "2021-01-23",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.696,
+                  "n": 59,
+                  "totalN": 1572,
+                  "startDate": "2021-01-30",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.401,
+                  "n": 72,
+                  "totalN": 2864,
+                  "startDate": "2021-02-06",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.562,
+                  "n": 60,
+                  "totalN": 1674,
+                  "startDate": "2021-02-20",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.322,
+                  "n": 16,
+                  "totalN": 1388,
+                  "startDate": "2021-02-27",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "2",
+              "name": "Anticipation / Hope",
+              "color": "#FFB05C",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.68,
+                  "n": 567,
+                  "totalN": 3091,
+                  "startDate": "2020-10-31",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.702,
+                  "n": 752,
+                  "totalN": 3371,
+                  "startDate": "2020-11-07",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.548,
+                  "n": 285,
+                  "totalN": 1827,
+                  "startDate": "2020-11-14",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.845,
+                  "n": 503,
+                  "totalN": 1985,
+                  "startDate": "2020-11-21",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.792,
+                  "n": 1452,
+                  "totalN": 6069,
+                  "startDate": "2020-11-28",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.852,
+                  "n": 1119,
+                  "totalN": 4132,
+                  "startDate": "2020-12-05",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.763,
+                  "n": 456,
+                  "totalN": 1577,
+                  "startDate": "2021-01-16",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.67,
+                  "n": 394,
+                  "totalN": 1527,
+                  "startDate": "2021-01-23",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.747,
+                  "n": 397,
+                  "totalN": 1572,
+                  "startDate": "2021-01-30",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.47,
+                  "n": 758,
+                  "totalN": 2864,
+                  "startDate": "2021-02-06",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.663,
+                  "n": 518,
+                  "totalN": 1674,
+                  "startDate": "2021-02-20",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.805,
+                  "n": 442,
+                  "totalN": 1388,
+                  "startDate": "2021-02-27",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "11",
+              "name": "Confused",
+              "color": "#A06D8F",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.495,
+                  "n": 39,
+                  "totalN": 3091,
+                  "startDate": "2020-10-31",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.603,
+                  "n": 72,
+                  "totalN": 3371,
+                  "startDate": "2020-11-07",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.636,
+                  "n": 31,
+                  "totalN": 1827,
+                  "startDate": "2020-11-14",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.477,
+                  "n": 30,
+                  "totalN": 1985,
+                  "startDate": "2020-11-21",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.719,
+                  "n": 108,
+                  "totalN": 6069,
+                  "startDate": "2020-11-28",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.643,
+                  "n": 77,
+                  "totalN": 4132,
+                  "startDate": "2020-12-05",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.654,
+                  "n": 26,
+                  "totalN": 1577,
+                  "startDate": "2021-01-16",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.675,
+                  "n": 31,
+                  "totalN": 1527,
+                  "startDate": "2021-01-23",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.667,
+                  "n": 19,
+                  "totalN": 1572,
+                  "startDate": "2021-01-30",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.56,
+                  "n": 53,
+                  "totalN": 2864,
+                  "startDate": "2021-02-06",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.441,
+                  "n": 30,
+                  "totalN": 1674,
+                  "startDate": "2021-02-20",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.447,
+                  "n": 17,
+                  "totalN": 1388,
+                  "startDate": "2021-02-27",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "20",
+              "name": "Dislike",
+              "color": "#F87171",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.214,
+                  "n": 19,
+                  "totalN": 3091,
+                  "startDate": "2020-10-31",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.422,
+                  "n": 55,
+                  "totalN": 3371,
+                  "startDate": "2020-11-07",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.062,
+                  "n": 14,
+                  "totalN": 1827,
+                  "startDate": "2020-11-14",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.446,
+                  "n": 27,
+                  "totalN": 1985,
+                  "startDate": "2020-11-21",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.576,
+                  "n": 113,
+                  "totalN": 6069,
+                  "startDate": "2020-11-28",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.441,
+                  "n": 83,
+                  "totalN": 4132,
+                  "startDate": "2020-12-05",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.45,
+                  "n": 18,
+                  "totalN": 1577,
+                  "startDate": "2021-01-16",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.33,
+                  "n": 18,
+                  "totalN": 1527,
+                  "startDate": "2021-01-23",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.268,
+                  "n": 15,
+                  "totalN": 1572,
+                  "startDate": "2021-01-30",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.24,
+                  "n": 22,
+                  "totalN": 2864,
+                  "startDate": "2021-02-06",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.302,
+                  "n": 24,
+                  "totalN": 1674,
+                  "startDate": "2021-02-20",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.254,
+                  "n": 5,
+                  "totalN": 1388,
+                  "startDate": "2021-02-27",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "5",
+              "name": "Disturbed / Disgust",
+              "color": "#41DB8A",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.424,
+                  "n": 79,
+                  "totalN": 3091,
+                  "startDate": "2020-10-31",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.415,
+                  "n": 95,
+                  "totalN": 3371,
+                  "startDate": "2020-11-07",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.535,
+                  "n": 15,
+                  "totalN": 1827,
+                  "startDate": "2020-11-14",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.251,
+                  "n": 31,
+                  "totalN": 1985,
+                  "startDate": "2020-11-21",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.6,
+                  "n": 87,
+                  "totalN": 6069,
+                  "startDate": "2020-11-28",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.399,
+                  "n": 75,
+                  "totalN": 4132,
+                  "startDate": "2020-12-05",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.358,
+                  "n": 43,
+                  "totalN": 1577,
+                  "startDate": "2021-01-16",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.388,
+                  "n": 40,
+                  "totalN": 1527,
+                  "startDate": "2021-01-23",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.587,
+                  "n": 39,
+                  "totalN": 1572,
+                  "startDate": "2021-01-30",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.358,
+                  "n": 30,
+                  "totalN": 2864,
+                  "startDate": "2021-02-06",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.258,
+                  "n": 34,
+                  "totalN": 1674,
+                  "startDate": "2021-02-20",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.282,
+                  "n": 34,
+                  "totalN": 1388,
+                  "startDate": "2021-02-27",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "3",
+              "name": "Joy / Happiness",
+              "color": "#D4B800",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.326,
+                  "n": 988,
+                  "totalN": 3091,
+                  "startDate": "2020-10-31",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.642,
+                  "n": 884,
+                  "totalN": 3371,
+                  "startDate": "2020-11-07",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.512,
+                  "n": 453,
+                  "totalN": 1827,
+                  "startDate": "2020-11-14",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.615,
+                  "n": 339,
+                  "totalN": 1985,
+                  "startDate": "2020-11-21",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.502,
+                  "n": 1143,
+                  "totalN": 6069,
+                  "startDate": "2020-11-28",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.479,
+                  "n": 474,
+                  "totalN": 4132,
+                  "startDate": "2020-12-05",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.271,
+                  "n": 431,
+                  "totalN": 1577,
+                  "startDate": "2021-01-16",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.131,
+                  "n": 473,
+                  "totalN": 1527,
+                  "startDate": "2021-01-23",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.665,
+                  "n": 784,
+                  "totalN": 1572,
+                  "startDate": "2021-01-30",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.437,
+                  "n": 843,
+                  "totalN": 2864,
+                  "startDate": "2021-02-06",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.543,
+                  "n": 720,
+                  "totalN": 1674,
+                  "startDate": "2021-02-20",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.209,
+                  "n": 472,
+                  "totalN": 1388,
+                  "startDate": "2021-02-27",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "25",
+              "name": "Like",
+              "color": "#86EFAC",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.172,
+                  "n": 864,
+                  "totalN": 3091,
+                  "startDate": "2020-10-31",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.304,
+                  "n": 733,
+                  "totalN": 3371,
+                  "startDate": "2020-11-07",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.27,
+                  "n": 450,
+                  "totalN": 1827,
+                  "startDate": "2020-11-14",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.56,
+                  "n": 483,
+                  "totalN": 1985,
+                  "startDate": "2020-11-21",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.471,
+                  "n": 1532,
+                  "totalN": 6069,
+                  "startDate": "2020-11-28",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.611,
+                  "n": 1189,
+                  "totalN": 4132,
+                  "startDate": "2020-12-05",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.169,
+                  "n": 361,
+                  "totalN": 1577,
+                  "startDate": "2021-01-16",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.062,
+                  "n": 327,
+                  "totalN": 1527,
+                  "startDate": "2021-01-23",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.19,
+                  "n": 74,
+                  "totalN": 1572,
+                  "startDate": "2021-01-30",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.319,
+                  "n": 790,
+                  "totalN": 2864,
+                  "startDate": "2021-02-06",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.385,
+                  "n": 115,
+                  "totalN": 1674,
+                  "startDate": "2021-02-20",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.123,
+                  "n": 251,
+                  "totalN": 1388,
+                  "startDate": "2021-02-27",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "9",
+              "name": "No emotion",
+              "color": "#94a3b8",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.209,
+                  "n": 32,
+                  "totalN": 3091,
+                  "startDate": "2020-10-31",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.687,
+                  "n": 113,
+                  "totalN": 3371,
+                  "startDate": "2020-11-07",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.499,
+                  "n": 42,
+                  "totalN": 1827,
+                  "startDate": "2020-11-14",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.528,
+                  "n": 86,
+                  "totalN": 1985,
+                  "startDate": "2020-11-21",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.638,
+                  "n": 121,
+                  "totalN": 6069,
+                  "startDate": "2020-11-28",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.685,
+                  "n": 83,
+                  "totalN": 4132,
+                  "startDate": "2020-12-05",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.421,
+                  "n": 17,
+                  "totalN": 1577,
+                  "startDate": "2021-01-16",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.412,
+                  "n": 29,
+                  "totalN": 1527,
+                  "startDate": "2021-01-23",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.517,
+                  "n": 11,
+                  "totalN": 1572,
+                  "startDate": "2021-01-30",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.312,
+                  "n": 48,
+                  "totalN": 2864,
+                  "startDate": "2021-02-06",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.367,
+                  "n": 27,
+                  "totalN": 1674,
+                  "startDate": "2021-02-20",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.281,
+                  "n": 31,
+                  "totalN": 1388,
+                  "startDate": "2021-02-27",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "7",
+              "name": "Sadness",
+              "color": "#519DFC",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.68,
+                  "n": 277,
+                  "totalN": 3091,
+                  "startDate": "2020-10-31",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.633,
+                  "n": 201,
+                  "totalN": 3371,
+                  "startDate": "2020-11-07",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.804,
+                  "n": 80,
+                  "totalN": 1827,
+                  "startDate": "2020-11-14",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.747,
+                  "n": 88,
+                  "totalN": 1985,
+                  "startDate": "2020-11-21",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.767,
+                  "n": 243,
+                  "totalN": 6069,
+                  "startDate": "2020-11-28",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.67,
+                  "n": 195,
+                  "totalN": 4132,
+                  "startDate": "2020-12-05",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.703,
+                  "n": 145,
+                  "totalN": 1577,
+                  "startDate": "2021-01-16",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.7,
+                  "n": 141,
+                  "totalN": 1527,
+                  "startDate": "2021-01-23",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.546,
+                  "n": 110,
+                  "totalN": 1572,
+                  "startDate": "2021-01-30",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.437,
+                  "n": 157,
+                  "totalN": 2864,
+                  "startDate": "2021-02-06",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.534,
+                  "n": 104,
+                  "totalN": 1674,
+                  "startDate": "2021-02-20",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.643,
+                  "n": 73,
+                  "totalN": 1388,
+                  "startDate": "2021-02-27",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "6",
+              "name": "Surprise",
+              "color": "#0EA5C6",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.396,
+                  "n": 107,
+                  "totalN": 3091,
+                  "startDate": "2020-10-31",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.5,
+                  "n": 79,
+                  "totalN": 3371,
+                  "startDate": "2020-11-07",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.345,
+                  "n": 34,
+                  "totalN": 1827,
+                  "startDate": "2020-11-14",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.389,
+                  "n": 22,
+                  "totalN": 1985,
+                  "startDate": "2020-11-21",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.51,
+                  "n": 97,
+                  "totalN": 6069,
+                  "startDate": "2020-11-28",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.545,
+                  "n": 57,
+                  "totalN": 4132,
+                  "startDate": "2020-12-05",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.386,
+                  "n": 32,
+                  "totalN": 1577,
+                  "startDate": "2021-01-16",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.47,
+                  "n": 35,
+                  "totalN": 1527,
+                  "startDate": "2021-01-23",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.518,
+                  "n": 45,
+                  "totalN": 1572,
+                  "startDate": "2021-01-30",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.452,
+                  "n": 62,
+                  "totalN": 2864,
+                  "startDate": "2021-02-06",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.485,
+                  "n": 37,
+                  "totalN": 1674,
+                  "startDate": "2021-02-20",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.328,
+                  "n": 10,
+                  "totalN": 1388,
+                  "startDate": "2021-02-27",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "10",
+              "name": "Unknown",
+              "color": "#6b7280",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.562,
+                  "n": 67,
+                  "totalN": 3091,
+                  "startDate": "2020-10-31",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.438,
+                  "n": 304,
+                  "totalN": 3371,
+                  "startDate": "2020-11-07",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.924,
+                  "n": 376,
+                  "totalN": 1827,
+                  "startDate": "2020-11-14",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.961,
+                  "n": 345,
+                  "totalN": 1985,
+                  "startDate": "2020-11-21",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.928,
+                  "n": 1065,
+                  "totalN": 6069,
+                  "startDate": "2020-11-28",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.941,
+                  "n": 713,
+                  "totalN": 4132,
+                  "startDate": "2020-12-05",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.712,
+                  "n": 9,
+                  "totalN": 1577,
+                  "startDate": "2021-01-16",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.881,
+                  "n": 7,
+                  "totalN": 1527,
+                  "startDate": "2021-01-23",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.519,
+                  "n": 19,
+                  "totalN": 1572,
+                  "startDate": "2021-01-30",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.248,
+                  "n": 29,
+                  "totalN": 2864,
+                  "startDate": "2021-02-06",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.123,
+                  "n": 5,
+                  "totalN": 1674,
+                  "startDate": "2021-02-20",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.974,
+                  "n": 37,
+                  "totalN": 1388,
+                  "startDate": "2021-02-27",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            }
+          ],
+          "windowDays": 7
+        },
+        "cumulative": {
+          "series": [
+            {
+              "id": "1",
+              "name": "Anger / Frustration",
+              "color": "#FC5C56",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.302,
+                  "n": 52,
+                  "totalN": 3091,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.525,
+                  "n": 135,
+                  "totalN": 6462,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.582,
+                  "n": 182,
+                  "totalN": 8289,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.569,
+                  "n": 213,
+                  "totalN": 10274,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.649,
+                  "n": 321,
+                  "totalN": 16343,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.599,
+                  "n": 388,
+                  "totalN": 20475,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.562,
+                  "n": 427,
+                  "totalN": 22052,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.564,
+                  "n": 459,
+                  "totalN": 23579,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.578,
+                  "n": 518,
+                  "totalN": 25151,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.544,
+                  "n": 590,
+                  "totalN": 28015,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.547,
+                  "n": 650,
+                  "totalN": 29689,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.532,
+                  "n": 666,
+                  "totalN": 31077,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "2",
+              "name": "Anticipation / Hope",
+              "color": "#FFB05C",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.687,
+                  "n": 567,
+                  "totalN": 3091,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.692,
+                  "n": 1319,
+                  "totalN": 6462,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.668,
+                  "n": 1604,
+                  "totalN": 8289,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.704,
+                  "n": 2107,
+                  "totalN": 10274,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.76,
+                  "n": 3559,
+                  "totalN": 16343,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.783,
+                  "n": 4678,
+                  "totalN": 20475,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.777,
+                  "n": 5134,
+                  "totalN": 22052,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.77,
+                  "n": 5528,
+                  "totalN": 23579,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.766,
+                  "n": 5925,
+                  "totalN": 25151,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.722,
+                  "n": 6683,
+                  "totalN": 28015,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.717,
+                  "n": 7201,
+                  "totalN": 29689,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.723,
+                  "n": 7643,
+                  "totalN": 31077,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "11",
+              "name": "Confused",
+              "color": "#A06D8F",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.465,
+                  "n": 39,
+                  "totalN": 3091,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.564,
+                  "n": 111,
+                  "totalN": 6462,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.566,
+                  "n": 142,
+                  "totalN": 8289,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.527,
+                  "n": 172,
+                  "totalN": 10274,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.637,
+                  "n": 280,
+                  "totalN": 16343,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.627,
+                  "n": 357,
+                  "totalN": 20475,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.64,
+                  "n": 383,
+                  "totalN": 22052,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.645,
+                  "n": 414,
+                  "totalN": 23579,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.642,
+                  "n": 433,
+                  "totalN": 25151,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.626,
+                  "n": 486,
+                  "totalN": 28015,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.613,
+                  "n": 516,
+                  "totalN": 29689,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.604,
+                  "n": 533,
+                  "totalN": 31077,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "20",
+              "name": "Dislike",
+              "color": "#F87171",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.204,
+                  "n": 19,
+                  "totalN": 3091,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.337,
+                  "n": 74,
+                  "totalN": 6462,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.323,
+                  "n": 88,
+                  "totalN": 8289,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.352,
+                  "n": 115,
+                  "totalN": 10274,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.479,
+                  "n": 228,
+                  "totalN": 16343,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.47,
+                  "n": 311,
+                  "totalN": 20475,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.431,
+                  "n": 329,
+                  "totalN": 22052,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.467,
+                  "n": 347,
+                  "totalN": 23579,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.419,
+                  "n": 362,
+                  "totalN": 25151,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.394,
+                  "n": 384,
+                  "totalN": 28015,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.398,
+                  "n": 408,
+                  "totalN": 29689,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.365,
+                  "n": 413,
+                  "totalN": 31077,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "5",
+              "name": "Disturbed / Disgust",
+              "color": "#41DB8A",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.451,
+                  "n": 79,
+                  "totalN": 3091,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.43,
+                  "n": 174,
+                  "totalN": 6462,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.435,
+                  "n": 189,
+                  "totalN": 8289,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.409,
+                  "n": 220,
+                  "totalN": 10274,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.507,
+                  "n": 307,
+                  "totalN": 16343,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.483,
+                  "n": 382,
+                  "totalN": 20475,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.453,
+                  "n": 425,
+                  "totalN": 22052,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.476,
+                  "n": 465,
+                  "totalN": 23579,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.479,
+                  "n": 504,
+                  "totalN": 25151,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.439,
+                  "n": 534,
+                  "totalN": 28015,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.447,
+                  "n": 568,
+                  "totalN": 29689,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.423,
+                  "n": 602,
+                  "totalN": 31077,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "3",
+              "name": "Joy / Happiness",
+              "color": "#D4B800",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.327,
+                  "n": 988,
+                  "totalN": 3091,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.46,
+                  "n": 1872,
+                  "totalN": 6462,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.477,
+                  "n": 2325,
+                  "totalN": 8289,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.517,
+                  "n": 2664,
+                  "totalN": 10274,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.557,
+                  "n": 3807,
+                  "totalN": 16343,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.563,
+                  "n": 4281,
+                  "totalN": 20475,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.521,
+                  "n": 4712,
+                  "totalN": 22052,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.486,
+                  "n": 5185,
+                  "totalN": 23579,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.508,
+                  "n": 5969,
+                  "totalN": 25151,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.491,
+                  "n": 6812,
+                  "totalN": 28015,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.498,
+                  "n": 7532,
+                  "totalN": 29689,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.488,
+                  "n": 8004,
+                  "totalN": 31077,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "25",
+              "name": "Like",
+              "color": "#86EFAC",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.183,
+                  "n": 864,
+                  "totalN": 3091,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.232,
+                  "n": 1597,
+                  "totalN": 6462,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.248,
+                  "n": 2047,
+                  "totalN": 8289,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.302,
+                  "n": 2530,
+                  "totalN": 10274,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.418,
+                  "n": 4062,
+                  "totalN": 16343,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.453,
+                  "n": 5251,
+                  "totalN": 20475,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.407,
+                  "n": 5612,
+                  "totalN": 22052,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.391,
+                  "n": 5939,
+                  "totalN": 23579,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.374,
+                  "n": 6013,
+                  "totalN": 25151,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.37,
+                  "n": 6803,
+                  "totalN": 28015,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.391,
+                  "n": 6918,
+                  "totalN": 29689,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.371,
+                  "n": 7169,
+                  "totalN": 31077,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "9",
+              "name": "No emotion",
+              "color": "#94a3b8",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.224,
+                  "n": 32,
+                  "totalN": 3091,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.58,
+                  "n": 145,
+                  "totalN": 6462,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.569,
+                  "n": 187,
+                  "totalN": 8289,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.551,
+                  "n": 273,
+                  "totalN": 10274,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.621,
+                  "n": 394,
+                  "totalN": 16343,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.624,
+                  "n": 477,
+                  "totalN": 20475,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.585,
+                  "n": 494,
+                  "totalN": 22052,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.598,
+                  "n": 523,
+                  "totalN": 23579,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.58,
+                  "n": 534,
+                  "totalN": 25151,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.559,
+                  "n": 582,
+                  "totalN": 28015,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.547,
+                  "n": 609,
+                  "totalN": 29689,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.54,
+                  "n": 640,
+                  "totalN": 31077,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "7",
+              "name": "Sadness",
+              "color": "#519DFC",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.683,
+                  "n": 277,
+                  "totalN": 3091,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.646,
+                  "n": 478,
+                  "totalN": 6462,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.675,
+                  "n": 558,
+                  "totalN": 8289,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.683,
+                  "n": 646,
+                  "totalN": 10274,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.734,
+                  "n": 889,
+                  "totalN": 16343,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.721,
+                  "n": 1084,
+                  "totalN": 20475,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.716,
+                  "n": 1229,
+                  "totalN": 22052,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.714,
+                  "n": 1370,
+                  "totalN": 23579,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.699,
+                  "n": 1480,
+                  "totalN": 25151,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.658,
+                  "n": 1637,
+                  "totalN": 28015,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.652,
+                  "n": 1741,
+                  "totalN": 29689,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.656,
+                  "n": 1814,
+                  "totalN": 31077,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "6",
+              "name": "Surprise",
+              "color": "#0EA5C6",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.366,
+                  "n": 107,
+                  "totalN": 3091,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.382,
+                  "n": 186,
+                  "totalN": 6462,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.39,
+                  "n": 220,
+                  "totalN": 8289,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.367,
+                  "n": 242,
+                  "totalN": 10274,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.464,
+                  "n": 339,
+                  "totalN": 16343,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.453,
+                  "n": 396,
+                  "totalN": 20475,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.457,
+                  "n": 428,
+                  "totalN": 22052,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.464,
+                  "n": 463,
+                  "totalN": 23579,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.469,
+                  "n": 508,
+                  "totalN": 25151,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.455,
+                  "n": 570,
+                  "totalN": 28015,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.474,
+                  "n": 607,
+                  "totalN": 29689,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.431,
+                  "n": 617,
+                  "totalN": 31077,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "10",
+              "name": "Unknown",
+              "color": "#6b7280",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.553,
+                  "n": 67,
+                  "totalN": 3091,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.51,
+                  "n": 371,
+                  "totalN": 6462,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.683,
+                  "n": 747,
+                  "totalN": 8289,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.761,
+                  "n": 1092,
+                  "totalN": 10274,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.85,
+                  "n": 2157,
+                  "totalN": 16343,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.87,
+                  "n": 2870,
+                  "totalN": 20475,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.871,
+                  "n": 2879,
+                  "totalN": 22052,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.879,
+                  "n": 2886,
+                  "totalN": 23579,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.871,
+                  "n": 2905,
+                  "totalN": 25151,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.857,
+                  "n": 2934,
+                  "totalN": 28015,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.863,
+                  "n": 2939,
+                  "totalN": 29689,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.864,
+                  "n": 2976,
+                  "totalN": 31077,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            }
+          ],
+          "windowDays": 7
+        },
+        "cumulativeOverall": {
+          "series": [
+            {
+              "id": "overall",
+              "name": "Overall agreement",
+              "color": "#475569",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.435,
+                  "n": 3091,
+                  "totalN": 3091,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.49,
+                  "n": 6462,
+                  "totalN": 6462,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.516,
+                  "n": 8289,
+                  "totalN": 8289,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.551,
+                  "n": 10274,
+                  "totalN": 10274,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.591,
+                  "n": 16343,
+                  "totalN": 16343,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.611,
+                  "n": 20475,
+                  "totalN": 20475,
+                  "startDate": "2020-10-17",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.597,
+                  "n": 22052,
+                  "totalN": 22052,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.58,
+                  "n": 23579,
+                  "totalN": 23579,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.585,
+                  "n": 25151,
+                  "totalN": 25151,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.57,
+                  "n": 28015,
+                  "totalN": 28015,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.569,
+                  "n": 29689,
+                  "totalN": 29689,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.563,
+                  "n": 31077,
+                  "totalN": 31077,
+                  "startDate": "2020-10-17",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            }
+          ],
+          "windowDays": 7
+        },
+        "coder": {
+          "series": [
+            {
+              "id": "24",
+              "name": "Fatima",
+              "color": "#2563eb",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.318,
+                  "n": 1500,
+                  "totalN": 3091,
+                  "startDate": "2020-10-31",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.347,
+                  "n": 2000,
+                  "totalN": 3371,
+                  "startDate": "2020-11-07",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.441,
+                  "n": 1000,
+                  "totalN": 1827,
+                  "startDate": "2020-11-14",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.542,
+                  "n": 1000,
+                  "totalN": 1985,
+                  "startDate": "2020-11-21",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.56,
+                  "n": 3000,
+                  "totalN": 6069,
+                  "startDate": "2020-11-28",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.601,
+                  "n": 2000,
+                  "totalN": 4132,
+                  "startDate": "2020-12-05",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.447,
+                  "n": 500,
+                  "totalN": 1577,
+                  "startDate": "2021-01-16",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.365,
+                  "n": 500,
+                  "totalN": 1527,
+                  "startDate": "2021-01-23",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.376,
+                  "n": 500,
+                  "totalN": 2864,
+                  "startDate": "2021-02-06",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.432,
+                  "n": 500,
+                  "totalN": 1388,
+                  "startDate": "2021-02-27",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "20",
+              "name": "María",
+              "color": "#059669",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.323,
+                  "n": 1500,
+                  "totalN": 3091,
+                  "startDate": "2020-10-31",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.38,
+                  "n": 2000,
+                  "totalN": 3371,
+                  "startDate": "2020-11-07",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.556,
+                  "n": 1000,
+                  "totalN": 1985,
+                  "startDate": "2020-11-21",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.636,
+                  "n": 1000,
+                  "totalN": 6069,
+                  "startDate": "2020-11-28",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.573,
+                  "n": 2000,
+                  "totalN": 4132,
+                  "startDate": "2020-12-05",
+                  "endDate": "2020-12-11"
+                },
+                {
+                  "date": "2021-01-16",
+                  "value": 0.447,
+                  "n": 500,
+                  "totalN": 1577,
+                  "startDate": "2021-01-16",
+                  "endDate": "2021-01-22"
+                },
+                {
+                  "date": "2021-01-23",
+                  "value": 0.365,
+                  "n": 500,
+                  "totalN": 1527,
+                  "startDate": "2021-01-23",
+                  "endDate": "2021-01-29"
+                },
+                {
+                  "date": "2021-01-30",
+                  "value": 0.607,
+                  "n": 500,
+                  "totalN": 1572,
+                  "startDate": "2021-01-30",
+                  "endDate": "2021-02-05"
+                },
+                {
+                  "date": "2021-02-06",
+                  "value": 0.448,
+                  "n": 500,
+                  "totalN": 2864,
+                  "startDate": "2021-02-06",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.515,
+                  "n": 500,
+                  "totalN": 1674,
+                  "startDate": "2021-02-20",
+                  "endDate": "2021-02-26"
+                }
+              ]
+            },
+            {
+              "id": "25",
+              "name": "Jason",
+              "color": "#dc2626",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.314,
+                  "n": 1500,
+                  "totalN": 3091,
+                  "startDate": "2020-10-31",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.322,
+                  "n": 2000,
+                  "totalN": 3371,
+                  "startDate": "2020-11-07",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.452,
+                  "n": 1000,
+                  "totalN": 1827,
+                  "startDate": "2020-11-14",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.471,
+                  "n": 2000,
+                  "totalN": 6069,
+                  "startDate": "2020-11-28",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.526,
+                  "n": 1000,
+                  "totalN": 4132,
+                  "startDate": "2020-12-05",
+                  "endDate": "2020-12-11"
+                }
+              ]
+            },
+            {
+              "id": "19",
+              "name": "Nadia",
+              "color": "#d97706",
+              "points": [
+                {
+                  "date": "2020-10-31",
+                  "value": 0.245,
+                  "n": 1500,
+                  "totalN": 3091,
+                  "startDate": "2020-10-31",
+                  "endDate": "2020-11-06"
+                },
+                {
+                  "date": "2020-11-07",
+                  "value": 0.394,
+                  "n": 2000,
+                  "totalN": 3371,
+                  "startDate": "2020-11-07",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-21",
+                  "value": 0.594,
+                  "n": 1000,
+                  "totalN": 1985,
+                  "startDate": "2020-11-21",
+                  "endDate": "2020-11-27"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.647,
+                  "n": 1000,
+                  "totalN": 6069,
+                  "startDate": "2020-11-28",
+                  "endDate": "2020-12-04"
+                },
+                {
+                  "date": "2020-12-05",
+                  "value": 0.652,
+                  "n": 1000,
+                  "totalN": 4132,
+                  "startDate": "2020-12-05",
+                  "endDate": "2020-12-11"
+                }
+              ]
+            },
+            {
+              "id": "23",
+              "name": "Dimitri",
+              "color": "#0891b2",
+              "points": [
+                {
+                  "date": "2020-11-07",
+                  "value": 0.299,
+                  "n": 2000,
+                  "totalN": 3371,
+                  "startDate": "2020-11-07",
+                  "endDate": "2020-11-13"
+                },
+                {
+                  "date": "2020-11-14",
+                  "value": 0.452,
+                  "n": 1000,
+                  "totalN": 1827,
+                  "startDate": "2020-11-14",
+                  "endDate": "2020-11-20"
+                },
+                {
+                  "date": "2020-11-28",
+                  "value": 0.422,
+                  "n": 2000,
+                  "totalN": 6069,
+                  "startDate": "2020-11-28",
+                  "endDate": "2020-12-04"
+                }
+              ]
+            },
+            {
+              "id": "29",
+              "name": "Lena",
+              "color": "#7c3aed",
+              "points": [
+                {
+                  "date": "2021-02-06",
+                  "value": 0.448,
+                  "n": 500,
+                  "totalN": 2864,
+                  "startDate": "2021-02-06",
+                  "endDate": "2021-02-12"
+                },
+                {
+                  "date": "2021-02-20",
+                  "value": 0.515,
+                  "n": 500,
+                  "totalN": 1674,
+                  "startDate": "2021-02-20",
+                  "endDate": "2021-02-26"
+                },
+                {
+                  "date": "2021-02-27",
+                  "value": 0.432,
+                  "n": 500,
+                  "totalN": 1388,
+                  "startDate": "2021-02-27",
+                  "endDate": "2021-03-05"
+                }
+              ]
+            },
+            {
+              "id": "21",
+              "name": "John",
+              "color": "#be123c",
+              "points": [
+                {
+                  "date": "2021-02-06",
+                  "value": 0.376,
+                  "n": 500,
+                  "totalN": 2864,
+                  "startDate": "2021-02-06",
+                  "endDate": "2021-02-12"
+                }
+              ]
+            },
+            {
+              "id": "28",
+              "name": "Ravi",
+              "color": "#65a30d",
+              "points": [
+                {
+                  "date": "2021-01-30",
+                  "value": 0.607,
+                  "n": 500,
+                  "totalN": 1572,
+                  "startDate": "2021-01-30",
+                  "endDate": "2021-02-05"
+                }
+              ]
+            }
+          ],
+          "windowDays": 7
+        }
+      }
+    }
+  },
+  "batches": [
+    {
+      "batchId": 6,
+      "batchName": "Batch RH04W",
+      "coderIds": [
+        19,
+        20,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "batchId": 7,
+      "batchName": "Fall 2020 - Batch DVBM5",
+      "coderIds": [
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "batchId": 8,
+      "batchName": "Fall 2020 - Batch IYWRB",
+      "coderIds": [
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "batchId": 9,
+      "batchName": "Fall 2020 - Batch JXSPM",
+      "coderIds": [
+        19,
+        20,
+        24
+      ]
+    },
+    {
+      "batchId": 10,
+      "batchName": "Fall 2020 - Batch TEWZR",
+      "coderIds": [
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "batchId": 11,
+      "batchName": "Fall 2020 - Batch ZN4LO",
+      "coderIds": [
+        19,
+        20,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "batchId": 12,
+      "batchName": "Fall 2020 - Batch R8H08",
+      "coderIds": [
+        19,
+        20,
+        24
+      ]
+    },
+    {
+      "batchId": 13,
+      "batchName": "Fall 2020 - Batch 3RMVT",
+      "coderIds": [
+        19,
+        20,
+        24
+      ]
+    },
+    {
+      "batchId": 14,
+      "batchName": "Fall 2020 - Batch TL5PR",
+      "coderIds": [
+        20,
+        24,
+        25
+      ]
+    },
+    {
+      "batchId": 18,
+      "batchName": "1. Winter 2021 - Batch 8PW6Y",
+      "coderIds": [
+        20,
+        24
+      ]
+    },
+    {
+      "batchId": 19,
+      "batchName": "2. Winter 2021 - Batch R0VK1",
+      "coderIds": [
+        20,
+        24
+      ]
+    },
+    {
+      "batchId": 20,
+      "batchName": " 3. Winter 2021 - Batch OOUJS",
+      "coderIds": [
+        20,
+        28
+      ]
+    },
+    {
+      "batchId": 21,
+      "batchName": "4. Winter 2021 - Batch 648NZ",
+      "coderIds": [
+        21,
+        24
+      ]
+    },
+    {
+      "batchId": 23,
+      "batchName": "6. Winter 2021 - Batch 2Y5VQ",
+      "coderIds": [
+        20,
+        29
+      ]
+    },
+    {
+      "batchId": 24,
+      "batchName": "7. Winter 2021 - Batch SNP0P",
+      "coderIds": [
+        20,
+        29
+      ]
+    },
+    {
+      "batchId": 25,
+      "batchName": "8. Winter 2021 - Batch Y3A64",
+      "coderIds": [
+        24,
+        29
+      ]
+    },
+    {
+      "batchId": 26,
+      "batchName": "9. Winter 2021 - Batch 06MQ8",
+      "coderIds": [
+        24,
+        29
+      ]
+    }
+  ],
+  "coderCodeCounts": {
+    "19": {
+      "1": 41,
+      "2": 936,
+      "3": 457,
+      "5": 79,
+      "6": 50,
+      "7": 205,
+      "9": 124,
+      "10": 392,
+      "11": 62,
+      "20": 93,
+      "25": 1154
+    },
+    "20": {
+      "1": 283,
+      "2": 2459,
+      "3": 2968,
+      "5": 244,
+      "6": 233,
+      "7": 783,
+      "9": 84,
+      "10": 505,
+      "11": 163,
+      "20": 140,
+      "25": 1223
+    },
+    "21": {
+      "1": 6,
+      "2": 97,
+      "3": 22,
+      "5": 4,
+      "6": 10,
+      "7": 23,
+      "9": 29,
+      "10": 12,
+      "11": 17,
+      "20": 2,
+      "25": 376
+    },
+    "23": {
+      "1": 73,
+      "2": 311,
+      "3": 826,
+      "5": 17,
+      "6": 69,
+      "7": 58,
+      "9": 72,
+      "10": 481,
+      "11": 38,
+      "20": 27,
+      "25": 482
+    },
+    "24": {
+      "1": 148,
+      "2": 2189,
+      "3": 1421,
+      "5": 198,
+      "6": 137,
+      "7": 563,
+      "9": 176,
+      "10": 868,
+      "11": 176,
+      "20": 121,
+      "25": 2519
+    },
+    "25": {
+      "1": 45,
+      "2": 849,
+      "3": 899,
+      "5": 35,
+      "6": 69,
+      "7": 73,
+      "9": 93,
+      "10": 668,
+      "11": 53,
+      "20": 27,
+      "25": 1277
+    },
+    "28": {
+      "1": 26,
+      "2": 176,
+      "3": 412,
+      "5": 13,
+      "6": 25,
+      "7": 35,
+      "9": 8,
+      "10": 13,
+      "11": 6,
+      "25": 4
+    },
+    "29": {
+      "1": 44,
+      "2": 626,
+      "3": 999,
+      "5": 12,
+      "6": 24,
+      "7": 74,
+      "9": 54,
+      "10": 37,
+      "11": 18,
+      "20": 3,
+      "25": 134
+    }
+  }
+}
